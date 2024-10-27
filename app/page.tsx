@@ -1,101 +1,91 @@
 import Image from "next/image";
-
+import Robot from "../assets/robot.svg";
+import { Button } from "@/components/ui/button";
+import Container from "@/components/ui/container";
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div
+      className="home w-full h-full"
+      style={{ background: "var(--gradient)" }}
+    >
+      <Container>
+        <div className="flex  items-center mt-[223px] justify-between  ">
+          <div className="relative">
+            <Image priority src={Robot} alt="Robot" />
+            <svg
+              className="absolute left-[50%] translate-x-[-50%]"
+              xmlns="http://www.w3.org/2000/svg"
+              width="303"
+              height="96"
+              viewBox="0 0 303 96"
+              fill="none"
+            >
+              <g filter="url(#filter0_f_133_4049)">
+                <ellipse
+                  cx="151.5"
+                  cy="48"
+                  rx="111.5"
+                  ry="8"
+                  fill="url(#paint0_radial_133_4049)"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_f_133_4049"
+                  x="0"
+                  y="0"
+                  width="303"
+                  height="96"
+                  filterUnits="userSpaceOnUse"
+                  colorInterpolationFilters="sRGB"
+                >
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="BackgroundImageFix"
+                    result="shape"
+                  />
+                  <feGaussianBlur
+                    stdDeviation="20"
+                    result="effect1_foregroundBlur_133_4049"
+                  />
+                </filter>
+                <radialGradient
+                  id="paint0_radial_133_4049"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(151.5 48) scale(111.5 8)"
+                >
+                  <stop />
+                  <stop offset="1" stopColor="#2E2644" />
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="flex flex-col gap-[7.2rem]">
+            <div>
+              <h1 className="uppercase text-right text-[2.25rem] mb-[0.7rem] font-normal leading-[normal] ">
+                Ассистент
+              </h1>
+              <span className="block text-right leading-5 text-sm tracking-[-0.5px]">
+                Ваш верный помощник в учебе
+              </span>
+            </div>
+            <div className="flex">
+              <Button className="min-w-[223px]" variant={"outline"}>
+                Зарегистрироваться
+              </Button>
+              <Button className="min-w-[223px]" variant={"default"}>
+                Войти
+              </Button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </Container>
     </div>
   );
 }

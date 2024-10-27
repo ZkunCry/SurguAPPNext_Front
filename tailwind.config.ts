@@ -6,11 +6,20 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+    },
     extend: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        gradient: "var(--gradient)",
+        primary: "var(--primary)",
+        form: "var(--form)",
+        grey: "var(--grey)",
       },
     },
   },
