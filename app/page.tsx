@@ -2,6 +2,7 @@ import Image from "next/image";
 import Robot from "../assets/robot.svg";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import Link from "next/link";
 export default function Home() {
   return (
     <div
@@ -76,11 +77,11 @@ export default function Home() {
               </span>
             </div>
             <div className="flex">
-              <Button className="min-w-[223px]" variant={"outline"}>
-                Зарегистрироваться
-              </Button>
-              <Button className="min-w-[223px]" variant={"default"}>
+              <Button asChild className="min-w-[223px]" variant={"outline"}>
                 Войти
+              </Button>
+              <Button asChild className="min-w-[223px]" variant={"default"}>
+                Зарегистрироваться
               </Button>
             </div>
           </div>

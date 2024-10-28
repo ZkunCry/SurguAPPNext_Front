@@ -20,6 +20,8 @@ const config: Config = {
         primary: "var(--primary)",
         form: "var(--form)",
         grey: "var(--grey)",
+        maincolor: "var(--main-color)",
+        border: "var(--border)",
       },
     },
   },
