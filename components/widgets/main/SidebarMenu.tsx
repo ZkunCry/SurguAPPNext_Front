@@ -9,10 +9,20 @@ import Settings from "../../../assets/settings.svg";
 import Feedback from "../../../assets/feedback.svg";
 import Logout from "../../../assets/logout.svg";
 import Favouries from "../../../assets/favourites.svg";
-
-const SidebarMenu = () => {
+import { HTMLAttributes } from "react";
+import { cn } from "@/utils/utils";
+interface SidebarMenuProps extends HTMLAttributes<HTMLElement> {
+  className?: string; // Дополнительные классы для стилизации
+}
+const SidebarMenu: React.FC<SidebarMenuProps> = ({ className, ...props }) => {
   return (
-    <Sidebar className="min-w-[200px] p-[10px] bg-maincolor rounded-lg ">
+    <Sidebar
+      className={cn(
+        "max-w-[200px] w-full  p-[10px] bg-maincolor rounded-lg ",
+        className
+      )}
+      {...props}
+    >
       <ul className="flex flex-col gap-[5px] *:border-b *:border-border *:py-[10px] *:gap-[10px]">
         <li className="inline-flex">
           <Image src={Home} alt="Новости" />
