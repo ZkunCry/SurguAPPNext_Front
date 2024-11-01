@@ -17,13 +17,13 @@ export default function NewsPage() {
     <div className="flex w-full h-full flex-col items-start ">
       <HeaderMain />
       <Container>
-        <div className="grid grid-cols-[1fr,minmax(0,660px),1fr] grid-rows-1 mt-[20px] items-start gap-[10px]">
-          <SidebarMenu />
-          <main className="flex flex-col w-full  gap-[10px] ">
-            <Title page="Новости">
+        <div className="relative grid grid-cols-[1fr,minmax(0,660px),1fr] grid-rows-1 mt-[20px] items-start gap-[10px]">
+          <SidebarMenu className="sticky top-[20px]" />
+          <main className="flex flex-col w-full   gap-[10px] ">
+            <Title className="md:bg-maincolor rounded-[10px]" page="Новости">
               <Image src={Search} alt="search" />
             </Title>
-            <div className="flex justify-between">
+            <div className="flex justify-between ">
               <Button
                 className="flex w-full max-w-[215px] justify-between py-[8px] pr-[5px] pl-[15px] border-primary"
                 variant={"outline"}
@@ -36,7 +36,7 @@ export default function NewsPage() {
               </Button>
             </div>
             <div className="flex flex-col bg-maincolor max-w-[660px] p-[10px] rounded-t-[10px] gap-[15px]">
-              <div className="flex flex-col  items-start card min-h-[228px] w-full sm:max-w-full gap-y-[20px]">
+              <div className="flex flex-col bg-accent rounded-t-lg  items-start card min-h-[228px] w-full sm:max-w-full gap-y-[20px]">
                 <div className="img h-[270px] w-full">
                   <Image
                     className="w-full h-full object-cover rounded-t-lg"
@@ -76,7 +76,7 @@ export default function NewsPage() {
               </div>
             </div>
           </main>
-          <Filter />
+          <Filter className="sticky top-[20px]" />
         </div>
       </Container>
     </div>

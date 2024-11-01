@@ -7,21 +7,22 @@
   --foreground: #171717;
   --gradient: radial-gradient(#4562d6, #031831);
   --primary: #2042b9;
-  --form: #1c1d28;
+  --form: #ffff;
   --grey: #a6a9b5;
   --main-color: #ffff;
   --border: #515666;
+  --accent: #f4f5ff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #181920;
     --foreground: #ededed;
-    /* --form: #ffff; */
+    --form: #1c1d28;
     --main-color: #272835;
+    --acent: #363948;
   }
 }
-
 body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;

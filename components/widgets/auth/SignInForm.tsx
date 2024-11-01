@@ -8,6 +8,7 @@ import Link from "next/link";
 import React from "react";
 import { useForm, Form } from "react-hook-form";
 import { z } from "zod";
+import ModeToggle from "../mode/ModeToggle";
 const SignInForm = () => {
   const { control } = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -18,11 +19,13 @@ const SignInForm = () => {
   });
   return (
     <Form
-      className="flex flex-col min-w-[580px] items-center bg-form rounded-[10px] p-[20px]"
+      className="flex flex-col min-w-[580px] items-center dark:bg-foreground  bg-form rounded-[10px] p-[20px]"
       control={control}
     >
       <div className="top flex w-full flex-col mb-[69px]">
-        <div className="mode self-end">Mode</div>
+        <div className="mode self-end">
+          <ModeToggle />
+        </div>
         <div className="flex flex-col items-center title">
           <h1
             className="text-[1.5rem] uppercase leading-[normal] font-normal"

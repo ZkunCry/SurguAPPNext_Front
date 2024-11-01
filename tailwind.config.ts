@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
 
   theme: {
     container: {
@@ -25,6 +26,7 @@ const config: Config = {
         grey: "var(--grey)",
         maincolor: "var(--main-color)",
         border: "var(--border)",
+        accent: "var(--accent)",
       },
     },
   },
