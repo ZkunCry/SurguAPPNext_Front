@@ -30,7 +30,8 @@ const config: Config = {
         error: "var(--error)",
         "error-border": "var(--error-border)",
         "error-text": "var(--error-text)",
-        // gradient:"var(--gradient)"
+        "home-gradient": "var(--home-gradient)",
+        "main-text": "var(--main-text)",
       },
     },
   },

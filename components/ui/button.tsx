@@ -40,7 +40,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean; // Позволяет использовать кнопку как дочерний элемент
-  active: boolean; // Новый пропс для состояния активности
+  active?: boolean; // Новый пропс для состояния активности
 }
 
 const Button = React.forwardRef<

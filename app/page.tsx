@@ -3,14 +3,24 @@ import Robot from "../assets/robot.svg";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import Link from "next/link";
+
 export default function Home() {
   return (
     <div
-      className="home w-full h-full"
-      style={{ background: "var(--gradient)" }}
+      className="flex-1 home w-full py-3 "
+      style={{ background: "var(--home-gradient)" }}
     >
       <Container>
-        <div className="flex  items-center mt-[223px] justify-between  ">
+        <div className="flex flex-col md:flex-row  items-center transition-[margin-top] duration-300 mt-[72px] md:mt-[223px] justify-between  ">
+          <div className=" w-full md:hidden text-white">
+            <h1 className="uppercase text-right text-[2.25rem]  font-normal leading-[normal] ">
+              Ассистент
+            </h1>
+            <span className="block text-right leading-5 text-sm tracking-[-0.5px]">
+              Ваш верный помощник в учебе
+            </span>
+          </div>
+
           <div className="relative">
             <Image priority src={Robot} alt="Robot" />
             <svg
@@ -68,21 +78,34 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-[7.2rem]">
-            <div>
-              <h1 className="uppercase text-right text-[2.25rem] mb-[0.7rem] font-normal leading-[normal] ">
+            <div className=" hidden md:block text-white">
+              <h1 className="uppercase   text-right text-[2.25rem] mb-[0.7rem] font-normal leading-[normal] ">
                 Ассистент
               </h1>
               <span className="block text-right leading-5 text-sm tracking-[-0.5px]">
                 Ваш верный помощник в учебе
               </span>
             </div>
-            <div className="flex">
-              <Button asChild className="min-w-[223px]" variant={"outline"}>
-                Войти
-              </Button>
-              <Button asChild className="min-w-[223px]" variant={"default"}>
-                Зарегистрироваться
-              </Button>
+            <div className="flex flex-col items-center gap-y-[10px]">
+              <div className="flex flex-col md:flex-row mt-[120px] gap-y-[20px] gap-x-[25px]">
+                <Link href={"/signin"}>
+                  <Button
+                    className="min-w-[223px] text-white"
+                    variant={"default"}
+                  >
+                    Войти
+                  </Button>
+                </Link>
+                <Link href={"/signup"}>
+                  <Button
+                    className="min-w-[223px] text-white"
+                    variant={"outline"}
+                  >
+                    Зарегистрироваться
+                  </Button>
+                </Link>
+              </div>
+              <Link href={"/news"}>Продолжить без входа</Link>
             </div>
           </div>
         </div>
