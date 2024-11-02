@@ -1,30 +1,96 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --background: #eceffb;
-  --foreground: #171717;
-  --gradient: radial-gradient(#4562d6, #031831);
-  --primary: #2042b9;
-  --form: #ffff;
-  --grey: #a6a9b5;
-  --main-color: #ffff;
-  --border: #515666;
-  --accent: #f4f5ff;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
+    --gradient: radial-gradient(
+      110.5% 150.26% at 100% -5.51%,
+      #3b456c 0%,
+      #1e74d9 100%
+    );
+    --background: #eceffb;
+    --foreground: #171717;
+    --gradient: radial-gradient(#4562d6, #031831);
+    --primary: #2042b9;
+    --form: #ffff;
+    --grey: #a6a9b5;
+    --main-color: #ffff;
+    --border: #515666;
+    --accent: #f4f5ff;
+    --text: #3c3d41;
+    --error: #fee;
+    --error-border: #d95757;
+    --error-text: #d95757;
+    --transition-duration: 0.5s; /* Длительность перехода */
+  }
+  :root[data-theme="dark"] {
+    --gradient: radial-gradient(
+      110.5% 150.26% at 100% -5.51%,
+      #3b456c 0%,
+      #1e74d9 100%
+    );
     --background: #181920;
     --foreground: #ededed;
+    --primary: #647eda;
     --form: #1c1d28;
     --main-color: #272835;
     --acent: #363948;
+    --text: #f0f2f6;
+  }
+  :root[data-theme="light"] {
+    --background: #eceffb;
+    --gradient: radial-gradient(
+      110.5% 150.26% at 100% -5.51%,
+      #3b456c 0%,
+      #1e74d9 100%
+    );
+    --foreground: #171717;
+    --gradient: radial-gradient(#4562d6, #031831);
+    --primary: #2042b9;
+    --form: #fff;
+    --grey: #a6a9b5;
+    --main-color: #ffff;
+    --border: #515666;
+    --accent: #f4f5ff;
+    --text: #3c3d41;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --gradient: radial-gradient(
+        110.5% 150.26% at 100% -5.51%,
+        #3b456c 0%,
+        #1e74d9 100%
+      );
+      --background: #181920;
+      --foreground: #ededed;
+      --form: #1c1d28;
+      --main-color: #272835;
+      --acent: #363948;
+      --text: #f0f2f6;
+    }
+  }
+  *::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    color: red;
+  }
+  *::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px;
   }
 }
+/* * {
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
+} */
 body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
+  background-color: #eceffb;
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }

@@ -9,14 +9,17 @@ import React from "react";
 import { useForm, Form } from "react-hook-form";
 import { z } from "zod";
 import ModeToggle from "../mode/ModeToggle";
+
+import { ErrorMessage } from "@hookform/error-message";
 const SignInForm = () => {
-  const { control } = useForm<z.infer<typeof signInSchema>>({
+  const {
+    control,
+    register,
+    formState: { isValid, errors },
+  } = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
   });
+  console.log(isValid);
   return (
     <Form
       className="flex flex-col min-w-[580px] items-center dark:bg-foreground  bg-form rounded-[10px] p-[20px]"
@@ -30,11 +33,9 @@ const SignInForm = () => {
           <h1
             className="text-[1.5rem] uppercase leading-[normal] font-normal"
             style={{
-              background:
-                "radial-gradient(110.5% 150.26% at 100% -5.51%, #3B456C 0%, #1E74D9 100%);",
-              WebkitBackgroundClip: "text",
+              background: "var(--gradient)",
               WebkitTextFillColor: "transparent",
-              color: "transparent",
+              WebkitBackgroundClip: "text",
             }}
           >
             Вход в аккаунт
@@ -43,27 +44,63 @@ const SignInForm = () => {
       </div>
       <div className="body flex flex-col mt-[20px] mb-[40px] w-full px-[10px]  gap-y-[1.55rem]">
         <div className="form-group space-y-[0.64rem]">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" placeholder="example@edu.surgu.ru" />
+          <Label className="text-text" htmlFor="email">
+            Email
+          </Label>
+          <Input
+            id="email"
+            placeholder="example@edu.surgu.ru"
+            {...register("email")}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="email"
+            render={({ message }) => (
+              <p className=" text-error-text">{message}</p>
+            )}
+          />
         </div>
 
         <div className="form-group space-y-[0.64rem]">
           <div className="flex w-full justify-between">
-            <Label htmlFor="email">Пароль</Label>
-            <Link href={"/"}>Забыли пароль?</Link>
+            <Label className="text-text" htmlFor="email">
+              Пароль
+            </Label>
+            <Link className="text-text" href={"/"}>
+              Забыли пароль?
+            </Link>
           </div>
 
-          <Input id="password" placeholder="Придумайте пароль" />
+          <Input
+            id="password"
+            placeholder="Введите пароль"
+            {...register("password")}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="password"
+            render={({ message }) => (
+              <p className=" text-error-text">{message}</p>
+            )}
+          />
         </div>
         <div className="form-group text-left">
-          <span>Запомнить меня</span>
+          <span className="text-text">Запомнить меня</span>
         </div>
       </div>
       <div className="footer w-full flex flex-col items-center gap-y-[20px] mb-[30px]">
-        <Button className="min-w-[180px] px-[20px] text-[#1C1D28] bg-grey">
+        <Button
+          active={isValid}
+          className="min-w-[180px] px-[20px] text-[#1C1D28] bg-grey"
+        >
           Войти
         </Button>
-        <span>Нет аккаунта? Зарегистрироваться</span>
+        <span className="text-text">
+          Нет аккаунта?{" "}
+          <Link className="text-primary" href={"/signup"}>
+            Зарегистрироваться
+          </Link>
+        </span>
       </div>
     </Form>
   );

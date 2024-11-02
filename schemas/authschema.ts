@@ -1,36 +1,42 @@
 import { z } from "zod";
+const regExpMail = new RegExp(
+  /^[a-zA-Z0-9._%+-]+@(surgu\.ru|edu\.surgu\.ru)*$/i
+);
 export const signInSchema = z.object({
   email: z
     .string()
-    .min(2, {
-      message: "Email must be at leat 2 characters",
-    })
-    .email({
-      message: "Email doesn't includes important symbols",
-    }),
-  password: z.string().min(4, {
-    message: "Пароль должен быть не меньше 4 символов",
+    .min(1, { message: "Это поле является обязательным к заполнению" })
+
+    .regex(
+      regExpMail,
+      "Неверный формат почты. Поддерживается: edu.surgu.ru или surgu.ru"
+    ),
+  password: z.string().min(9, {
+    message: "Пароль должен быть не меньше 9 символов",
   }),
 });
 export const signUpSchema = z
   .object({
-    name: z.string({
-      required_error: "Данное поле обязательно для заполнения",
-    }),
-    middleName: z.string().optional(),
-    surname: z.string({
-      required_error: "Данное поле обязательно для заполнения",
-    }),
+    name: z
+      .string()
+      .min(1, { message: "Это поле является обязательным к заполнению" }),
+    middleName: z
+      .string()
+      .optional()
+      .transform((value) => (value ? value : undefined)), // Преобразует пустую строку в undefined
+    surname: z
+      .string()
+      .min(1, { message: "Это поле является обязательным к заполнению" }),
     email: z
       .string()
-      .min(2, {
-        message: "Email must be at leat 2 characters",
-      })
-      .email({
-        message: "Email doesn't includes important symbols",
-      }),
+      .min(1, { message: "Это поле является обязательным к заполнению" })
+
+      .regex(
+        regExpMail,
+        "Неверный формат почты. Поддерживается: edu.surgu.ru или surgu.ru"
+      ),
     password: z.string().min(4, {
-      message: "Пароль должен быть больше 4 символов",
+      message: "Пароль должен быть больше 9 символов",
     }),
     repeat_password: z.string(),
   })

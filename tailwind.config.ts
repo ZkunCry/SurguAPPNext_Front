@@ -7,7 +7,6 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   darkMode: "class",
-
   theme: {
     container: {
       center: true,
@@ -27,6 +26,11 @@ const config: Config = {
         maincolor: "var(--main-color)",
         border: "var(--border)",
         accent: "var(--accent)",
+        text: "var(--text)",
+        error: "var(--error)",
+        "error-border": "var(--error-border)",
+        "error-text": "var(--error-text)",
+        // gradient:"var(--gradient)"
       },
     },
   },
