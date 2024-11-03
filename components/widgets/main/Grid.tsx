@@ -9,7 +9,7 @@ const Grid: React.FC<GridProps> = ({ className, children }) => {
     <div
       className={cn(
         className,
-        "relative grid grid-cols-[200px,1fr,280px] grid-rows-1 mt-[20px] items-start gap-[20px]"
+        "relative grid md:grid-cols-[200px,minmax(0,1fr),280px] grid-rows-1 mt-[20px] items-start gap-[20px]"
       )}
     >
       {children}

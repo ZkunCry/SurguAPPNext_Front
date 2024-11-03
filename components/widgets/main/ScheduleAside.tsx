@@ -2,80 +2,76 @@ import Sidebar from "@/components/ui/sidebar";
 import React from "react";
 import Map from "../../../assets/map.svg";
 import Image from "next/image";
-import { JSDOM } from "jsdom";
-
-const getData = async () => {
-  const res = await fetch("https://www.surgu.ru/ucheba/raspisanie-zvonkov");
-  const html = await res.text();
-  const template = [
-    "Корпусы: «А», «Г», «К», «У»",
-    "Медицинский колледж",
-    "Дружба",
-    "Водолей",
-  ];
-  const dom = new JSDOM(html);
-  const document = dom.window.document;
-
-  // Извлечение данных
-  const scheduleData = [];
-
-  // Найти нужный элемент по ID
-  const content = document.querySelector("#content_paragraph_56");
-
-  if (content) {
-    // Извлечение всех таблиц с расписанием
-    const tables = content.querySelectorAll("table");
-
-    tables.forEach((table, index2) => {
-      const rows = table.querySelectorAll("tr");
-      const times = [];
-      rows.forEach((row, index) => {
-        const cells = row.querySelectorAll("td");
-        console.log(cells[0].textContent);
-        if (cells.length > 0) {
-          const timeInfo = {
-            pair: cells[0].textContent.trim(),
-            time: cells[1].textContent.trim(),
-            break: cells[2].textContent.trim(),
-          };
-          times.push(timeInfo);
-        }
-      });
-      const title = template[index2];
-      scheduleData.push({ title, times });
-    });
-  }
-  return scheduleData;
-};
-
 const ScheduleAside = async () => {
-  const data = await getData();
   return (
-    <Sidebar className="flex flex-col  max-w-[280px] min-w-[280px] w-full max-h-[567px] overflow-auto bg-maincolor rounded-[10px]">
+    <Sidebar className="flex flex-col max-w-[280px] min-w-[280px] w-full max-h-[567px] overflow-auto bg-maincolor rounded-[10px]">
       <div className="title p-[10px] border-b border-border">
-        <h1 className="text-[18px]"> Расписание звонков</h1>
+        <h1 className="text-[18px]">Расписание звонков</h1>
       </div>
       <div className="flex flex-col gap-[20px] p-[10px]">
-        {data.map((item, index) => {
-          return (
-            <div key={index} className="flex flex-col">
-              <div className="flex gap-[10px]">
-                <Image src={Map} alt="Карта" />
-                <span className="text-text">{item.title} </span>
-              </div>
+        {/* Корпусы «А», «Г», «К», «У» */}
+        <div className="flex flex-col">
+          <div className="flex gap-[10px]">
+            <Image src={Map} alt="Карта" />
+            <span className="text-text">Корпусы «А», «Г», «К», «У»</span>
+          </div>
+          <ul className="flex flex-col px-[30px] text-text">
+            <li>1 пара 08:30-09:50 перерыв 10 минут</li>
+            <li>2 пара 10:00-11:20 перерыв 10 минут</li>
+            <li>3 пара 11:30-12:50 перерыв 30 минут</li>
+            <li>4 пара 13:20-14:40 перерыв 10 минут</li>
+            <li>5 пара 14:50-16:10 перерыв 10 минут</li>
+            <li>6 пара 16:20-17:40 перерыв 20 минут</li>
+            <li>7 пара 18:00-19:20 перерыв 10 минут</li>
+            <li>8 пара 19:30-20:50</li>
+          </ul>
+        </div>
 
-              <ul className="flex flex-col px-[30px] text-text">
-                {item.times.map((timeValue, id) => {
-                  return (
-                    <li
-                      key={id}
-                    >{`${timeValue.pair} ${timeValue.time} ${timeValue.break}`}</li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
-        })}
+        {/* Медицинский колледж */}
+        <div className="flex flex-col">
+          <div className="flex gap-[10px]">
+            <Image src={Map} alt="Медицинский колледж" />
+            <span className="text-text">Медицинский колледж</span>
+          </div>
+          <ul className="flex flex-col px-[30px] text-text">
+            <li>1 пара 08:00-09:35 перерыв 10 минут</li>
+            <li>2 пара 09:45-11:20 перерыв 30 минут</li>
+            <li>3 пара 11:50-13:25 перерыв 30 минут</li>
+            <li>4 пара 13:55-15:30 перерыв 20 минут</li>
+            <li>5 пара 15:50-17:25 перерыв 10 минут</li>
+            <li>6 пара 17:35-19:10</li>
+          </ul>
+        </div>
+
+        {/* Спорткомплекс «Дружба» */}
+        <div className="flex flex-col">
+          <div className="flex gap-[10px]">
+            <Image src={Map} alt="Спорткомплекс «Дружба»" />
+            <span className="text-text">Спорткомплекс «Дружба»</span>
+          </div>
+          <ul className="flex flex-col px-[30px] text-text">
+            <li>1 пара 09:00-10:20 перерыв 10 минут</li>
+            <li>2 пара 10:30-11:50 перерыв 10 минут</li>
+            <li>3 пара 12:00-13:20 перерыв 10 минут</li>
+            <li>4 пара 13:30-14:50 перерыв 10 минут</li>
+            <li>5 пара 15:00-16:20 перерыв 10 минут</li>
+            <li>6 пара 16:30-17:50</li>
+          </ul>
+        </div>
+
+        {/* Плавательный бассейн «Водолей» */}
+        <div className="flex flex-col">
+          <div className="flex gap-[10px]">
+            <Image src={Map} alt="Плавательный бассейн «Водолей»" />
+            <span className="text-text">Плавательный бассейн «Водолей»</span>
+          </div>
+          <ul className="flex flex-col px-[30px] text-text">
+            <li>1 пара 11:00-11:45</li>
+            <li>2 пара 11:45-12:30</li>
+            <li>3 пара 12:30-13:15</li>
+            <li>4 пара 13:15-14:00</li>
+          </ul>
+        </div>
       </div>
     </Sidebar>
   );
