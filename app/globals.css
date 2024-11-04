@@ -23,6 +23,7 @@
     --error-border: #d95757;
     --error-text: #d95757;
     --transition-duration: 0.5s; /* Длительность перехода */
+    --group: #7a4dc4;
   }
   :root[data-theme="dark"] {
     --gradient: radial-gradient(

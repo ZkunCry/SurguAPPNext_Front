@@ -14,7 +14,7 @@ export default function PublicLayout({
       <HeaderMain />
       <Container>
         <Grid>
-          <SidebarMenu className="sticky top-[20px]" links={publicLinks} />
+          <SidebarMenu className="sticky top-[101px]" links={publicLinks} />
           {children}
         </Grid>
       </Container>

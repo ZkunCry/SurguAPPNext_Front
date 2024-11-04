@@ -4,7 +4,7 @@ import Map from "../../../assets/map.svg";
 import Image from "next/image";
 const ScheduleAside = async () => {
   return (
-    <Sidebar className="flex flex-col max-w-[280px] min-w-[280px] w-full max-h-[567px] overflow-auto bg-maincolor rounded-[10px]">
+    <Sidebar className="flex flex-col max-w-[280px] min-w-[280px] w-full max-h-[567px] sticky top-[101px] overflow-auto bg-maincolor rounded-[10px]">
       <div className="title p-[10px] border-b border-border">
         <h1 className="text-[18px]">Расписание звонков</h1>
       </div>

@@ -32,6 +32,7 @@ const config: Config = {
         "error-text": "var(--error-text)",
         "home-gradient": "var(--home-gradient)",
         "main-text": "var(--main-text)",
+        group: "var(--group)",
       },
     },
   },
