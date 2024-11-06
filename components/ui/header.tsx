@@ -5,7 +5,7 @@ interface HeaderProps extends HTMLAttributes<HTMLElement> {
 }
 
 const Header: React.FC<HeaderProps> = ({ className, children }) => {
-  return <aside className={className}>{children}</aside>;
+  return <header className={className}>{children}</header>;
 };
 
 export default Header;

@@ -1,8 +1,6 @@
 import Container from "@/components/ui/container";
-import Grid from "@/components/widgets/main/Grid";
+
 import HeaderMain from "@/components/widgets/main/HeaderMain";
-import SidebarMenu from "@/components/widgets/main/SidebarMenu";
-import { publicLinks } from "../constants/sidebar/links";
 
 export default function PublicLayout({
   children,
@@ -10,14 +8,9 @@ export default function PublicLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex w-full h-full flex-col items-start ">
+    <div className="flex relative w-full h-full flex-col items-start overflow-auto ">
       <HeaderMain />
-      <Container>
-        <Grid>
-          <SidebarMenu className="sticky top-[101px]" links={publicLinks} />
-          {children}
-        </Grid>
-      </Container>
+      <Container>{children}</Container>
     </div>
   );
 }

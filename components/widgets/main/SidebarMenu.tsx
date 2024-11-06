@@ -20,7 +20,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
   return (
     <Sidebar
       className={cn(
-        "min-w-[200px] max-w-[200px]  p-[10px] bg-maincolor rounded-lg ",
+        "hidden lg:block min-w-[200px] max-w-[200px]  p-[10px] bg-maincolor rounded-lg sticky top-[101px] ",
         className
       )}
       {...props}

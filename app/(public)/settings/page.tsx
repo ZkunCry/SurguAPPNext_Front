@@ -3,13 +3,16 @@ import Earth from "../../../assets/earth.svg";
 import Pass from "../../../assets/pass.svg";
 import Moon from "../../../assets/moon.svg";
 import Arrow from "../../../assets/arrowsettings.svg";
-
 import Image from "next/image";
 import CustomToggle from "@/components/widgets/mode/CustomToggle";
-
+import Grid from "@/components/widgets/main/Grid";
+import SidebarMenu from "@/components/widgets/main/SidebarMenu";
+import { publicLinks } from "@/app/constants/sidebar/links";
 export default function SettingsPage() {
   return (
-    <>
+    <Grid>
+      <SidebarMenu className="" links={publicLinks} />
+
       <main className=" flex flex-col w-full gap-[15px] overflow-hidden ">
         <Title className="bg-maincolor rounded-[10px]" page="Настройки" />
         <div className="min-h-[637px] flex flex-col items-center  p-[10px] bg-maincolor">
@@ -41,6 +44,6 @@ export default function SettingsPage() {
           </div>
         </div>
       </main>
-    </>
+    </Grid>
   );
 }
