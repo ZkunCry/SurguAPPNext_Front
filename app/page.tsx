@@ -3,21 +3,7 @@ import Robot from "../assets/robot.svg";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import Link from "next/link";
-
 export default async function Home() {
-  // const data = await fetch("http://localhost:3001/auth/signin", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     email: "aksentyev_eo@edu.surgu.ru",
-  //     password: "1234567890",
-  //   }),
-  //   credentials: "include",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // const res = data.headers.get("set-cookie");
-  // console.log(res);
   return (
     <div
       className="flex-1 home w-full py-3 "

@@ -12,7 +12,6 @@ export default function SettingsPage() {
   return (
     <Grid>
       <SidebarMenu className="" links={publicLinks} />
-
       <main className=" flex flex-col w-full gap-[15px] overflow-hidden ">
         <Title className="bg-maincolor rounded-[10px]" page="Настройки" />
         <div className="min-h-[637px] flex flex-col items-center  p-[10px] bg-maincolor">

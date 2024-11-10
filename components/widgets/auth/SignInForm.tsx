@@ -11,7 +11,10 @@ import { z } from "zod";
 import ModeToggle from "../mode/ModeToggle";
 
 import { ErrorMessage } from "@hookform/error-message";
+import { useSignIn } from "@/query-hooks/auth";
+import useUserStore from "@/store/useUser";
 const SignInForm = () => {
+  const { setCredentials } = useUserStore();
   const {
     control,
     register,
@@ -19,10 +22,20 @@ const SignInForm = () => {
   } = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
   });
-  console.log(isValid);
+
+  const { mutateAsync } = useSignIn();
+  const onSubmit = async ({
+    data: { email, password },
+  }: {
+    data: { email: string; password: string };
+  }) => {
+    const res = await mutateAsync({ email, password });
+    setCredentials(res);
+  };
   return (
     <Form
       className="flex flex-col min-w-[580px] items-center dark:bg-foreground  bg-form rounded-[10px] p-[20px]"
+      onSubmit={onSubmit}
       control={control}
     >
       <div className="top flex w-full flex-col mb-[69px]">

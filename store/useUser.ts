@@ -1,0 +1,27 @@
+import type { IUser } from "@/types/user";
+import { create } from "zustand";
+interface IUserState {
+  user: IUser | null;
+  setCredentials: (user: IUser) => void;
+  getUserByStorage: () => number | null;
+  logOut: () => void;
+}
+
+const useUserStore = create<IUserState>((set) => ({
+  user: null,
+  setCredentials(userData) {
+    set({ user: userData });
+    localStorage.setItem("id", JSON.stringify(userData.id));
+  },
+  getUserByStorage() {
+    const storedId = localStorage.getItem("id");
+    if (storedId) {
+      return JSON.parse(storedId) as number;
+    }
+    return null;
+  },
+  logOut() {
+    set({ user: null });
+  },
+}));
+export default useUserStore;
