@@ -44,3 +44,6 @@ export const signUpSchema = z
     message: "Пароли не совпадают",
     path: ["repeat_password"],
   });
+
+export type SignInType = z.infer<typeof signInSchema>;
+export type SignUpType = z.infer<typeof signUpSchema>;

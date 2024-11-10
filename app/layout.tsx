@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Roboto_Mono, Open_Sans } from "next/font/google";
+import Providers from "./providers/Providers";
+import { Toaster } from "react-hot-toast";
 const openSans = Open_Sans({
   subsets: ["latin"],
   display: "swap",
@@ -29,11 +31,14 @@ export default function RootLayout({
       <body
         className={`${openSans.variable} ${robotoMono.variable} font-sans bg-background`}
       >
-        <ThemeProvider>
-          <div className="flex flex-col  h-[1px] relative overflow-y-auto overflow-x-hidden max-h-dvh w-full min-h-dvh">
-            {children}
-          </div>
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider>
+            <div className="flex flex-col  h-[1px] relative overflow-y-auto overflow-x-hidden max-h-dvh w-full min-h-dvh">
+              {children}
+            </div>
+            <Toaster position="bottom-center" />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
