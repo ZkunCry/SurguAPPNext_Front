@@ -1,7 +1,7 @@
 import { UserService } from "@/services/user/userService";
 import type { IUser } from "@/types/user";
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-
+import { useQuery } from "@tanstack/react-query";
+import type { UseQueryOptions } from "@tanstack/react-query";
 export function useGetUserById(
   id: number | null,
   options?: UseQueryOptions<IUser, Error>

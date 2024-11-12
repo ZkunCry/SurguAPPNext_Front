@@ -3,19 +3,19 @@ import { AuthService } from "@/services/auth/authService";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import type { SignInType } from "@/schemas/authschema";
 import toast from "react-hot-toast";
+import type { AxiosError } from "axios";
 
 // Тип для результата мутации
-type IUseSignIn = UseMutationResult<IUser, Error, SignInType, unknown>;
+type IUseSignIn = UseMutationResult<IUser, AxiosError, SignInType, unknown>;
 
 export function useSignIn(): IUseSignIn {
-  return useMutation<IUser, Error, SignInType>({
+  return useMutation<IUser, AxiosError, SignInType>({
     mutationFn: AuthService.signIn,
-    onError: (error: Error) => {
-      toast.error(error.message);
-      console.error("Error during sign in", error);
+    onError: (error: AxiosError) => {
+      toast.error(`Ошибка: ${error.response?.data}`);
     },
     onSuccess: (data) => {
-      console.log("Signed in successfully", data);
+      toast.success("Вы успешно вошли в систему.");
     },
   });
 }

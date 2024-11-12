@@ -22,5 +22,32 @@ axiosInstance.interceptors.request.use(async (config) => {
   }
   return config;
 });
+axiosInstance.interceptors.response.use(
+  (response) => response, // Возвращаем ответ, если все хорошо
+  async (error) => {
+    const originalRequest = error.config;
 
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshResponse = await axios.get(`${API_URL}/access_token`, {
+          withCredentials: true,
+        });
+        console.log(refreshResponse.headers);
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        console.error("Ошибка обновления токена", refreshError);
+        return Promise.reject(refreshError);
+      }
+    }
+
+    // Если ошибка не 401 или другая проблема
+    return Promise.reject(error);
+  }
+);
 export default axiosInstance;

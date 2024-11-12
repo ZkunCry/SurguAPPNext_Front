@@ -13,6 +13,7 @@ import ModeToggle from "../mode/ModeToggle";
 import { ErrorMessage } from "@hookform/error-message";
 import { useSignIn } from "@/query-hooks/auth";
 import useUserStore from "@/store/useUser";
+import { redirect } from "next/navigation";
 const SignInForm = () => {
   const { setCredentials } = useUserStore();
   const {
@@ -31,6 +32,7 @@ const SignInForm = () => {
   }) => {
     const res = await mutateAsync({ email, password });
     setCredentials(res);
+    redirect("/news");
   };
   return (
     <Form

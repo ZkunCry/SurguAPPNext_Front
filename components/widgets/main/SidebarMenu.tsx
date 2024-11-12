@@ -7,6 +7,7 @@ import Logout from "../../../assets/logout.svg";
 import { HTMLAttributes } from "react";
 import { cn } from "@/utils/utils";
 import type { LinkSidebar } from "@/types/link";
+import { publicLinks } from "@/app/constants/sidebar/links";
 
 interface SidebarMenuProps extends HTMLAttributes<HTMLElement> {
   className?: string; // Дополнительные классы для стилизации
@@ -14,7 +15,7 @@ interface SidebarMenuProps extends HTMLAttributes<HTMLElement> {
 }
 const SidebarMenu: React.FC<SidebarMenuProps> = ({
   className,
-  links = [],
+  links = publicLinks,
   ...props
 }) => {
   return (

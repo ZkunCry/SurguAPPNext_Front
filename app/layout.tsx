@@ -36,7 +36,7 @@ export default function RootLayout({
             <div className="flex flex-col  h-[1px] relative overflow-y-auto overflow-x-hidden max-h-dvh w-full min-h-dvh">
               {children}
             </div>
-            <Toaster position="bottom-center" />
+            <Toaster position="bottom-right" />
           </ThemeProvider>
         </Providers>
       </body>
