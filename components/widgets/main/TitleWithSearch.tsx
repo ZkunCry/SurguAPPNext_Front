@@ -6,7 +6,7 @@ import Search from "../../../assets/search.svg";
 import Input from "@/components/ui/input";
 import Image from "next/image";
 import ArrowBack from "../../../assets/arrow.svg";
-import { useRouter } from "next/navigation";
+
 const TitleWithSearch: React.FC<TitleProps> = ({
   onChange,
   placeholder,
@@ -18,7 +18,7 @@ const TitleWithSearch: React.FC<TitleProps> = ({
   const handleSearchClick = () => {
     setIsSearchActive((prev) => !prev);
   };
-
+  console.log("test");
   return (
     <Title page={!isSearchActive && page} {...props}>
       {isSearchActive && (

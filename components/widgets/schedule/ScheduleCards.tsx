@@ -1,75 +1,44 @@
-import { groupByName } from "@/utils/groupByName";
+"use client";
 import React from "react";
 import ScheduleCard from "./ScheduleCard";
-const pairsData = [
-  {
-    name: "1",
-    time: "8:30 - 9:50",
-    subject: "Объектно ориентированное программирование",
-    type: "Практика",
-    group: "п/г 1",
-    room: "У903",
-    teacher: "Гришмановский Павел Валерьевич",
-    note: "Заметка: контрольная работа",
-  },
-  {
-    name: "1",
-    time: "8:30 - 9:50",
-    subject: "Математический анализ",
-    type: "Лекция",
-    group: "п/г 2",
-    room: "У104",
-    teacher: "Иванов Иван Иванович",
-    note: "Заметка: повторение темы",
-  },
-  {
-    name: "2",
-    time: "10:00 - 11:20",
-    subject: "Математический анализ",
-    type: "Лекция",
-    group: "п/г 2",
-    room: "У104",
-    teacher: "Иванов Иван Иванович",
-    note: "Заметка: повторение темы",
-  },
-  {
-    name: "2",
-    time: "10:00 - 11:20",
-    subject: "Математический анализ",
-    type: "Лекция",
-    group: "п/г 2",
-    room: "У104",
-    teacher: "Иванов Иван Иванович",
-    note: "Заметка: повторение темы",
-  },
-  {
-    name: "3",
-    time: "10:00 - 11:20",
-    subject: "Математический анализ",
-    type: "Лекция",
-    group: "п/г 2",
-    room: "У104",
-    teacher: "Иванов Иван Иванович",
-    note: "Заметка: повторение темы",
-  },
-];
+import useScheduleStore from "@/store/useSchedule";
+import { useGetScheduleByGroup } from "@/query-hooks/schedule";
+import { motion } from "framer-motion";
 const ScheduleCards = () => {
-  const result = groupByName(pairsData);
-  console.log(result[3]);
-  return result.map((paisrArr, id) => (
-    <div
-      key={id}
-      className="flex  flex-col card  p-[10px] bg-maincolor  rounded-[10px] gap-[10px]"
+  const scheduleDay = useScheduleStore((state) => state.scheduleDay || null);
+  const group = useScheduleStore((state) => state.group || null);
+  const {
+    data: schedule,
+    isFetching,
+    isLoading,
+  } = useGetScheduleByGroup(group, {
+    enabled: group !== null,
+    refetchOnWindowFocus: false,
+  });
+  const currentDay = schedule
+    ?.filter((pair) => pair.day === scheduleDay?.day.toUpperCase())
+    .sort((a, b) => a.position - b.position);
+  console.log(currentDay);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col gap-[10px] fade-in "
     >
-      <div className="flex  justify-between">
-        <h1>{`${paisrArr[0].name} пара`}</h1>
-        <h1>{paisrArr[0].time}</h1>
-      </div>
-      {paisrArr.map((pair, index) => (
-        <ScheduleCard key={index} pair={pair} />
+      {currentDay?.map((pair) => (
+        <div
+          key={pair.id}
+          className="flex flex-col p-[10px] bg-maincolor rounded-[10px] gap-[10px] fade-in"
+        >
+          {/* {pair.subGroup  } */}
+          <div></div>
+          <h2>{pair.position} пара</h2>
+          <ScheduleCard pair={pair} />
+        </div>
       ))}
-    </div>
-  ));
+    </motion.div>
+  );
 };
 
 export default ScheduleCards;

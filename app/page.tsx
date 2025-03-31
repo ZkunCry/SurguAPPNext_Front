@@ -21,7 +21,7 @@ export default async function Home() {
           </div>
 
           <div className="relative">
-            <Image priority src={Robot} alt="Robot" />
+            <Image className="robot" priority src={Robot} alt="Robot" />
             <svg
               className="absolute left-[50%] translate-x-[-50%]"
               xmlns="http://www.w3.org/2000/svg"

@@ -20,7 +20,7 @@ const Title: React.FC<TitleProps> = ({
 }) => {
   return (
     <div
-      className={cn("w-full  md:bg-maincolor rounded-[10px]", className)}
+      className={cn("w-full bg-maincolor rounded-[10px]", className)}
       {...props}
     >
       <Container>

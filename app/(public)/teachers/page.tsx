@@ -7,7 +7,7 @@ import User from "@/components/widgets/teachers/User";
 export default function TeachersPage() {
   return (
     <Grid>
-      <SidebarMenu  />
+      <SidebarMenu links={publicLinks} />
       <main className="flex flex-col w-full gap-[15px] overflow-hidden ">
         <TitleWithSearch
           page="Преподаватели"

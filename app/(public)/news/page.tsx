@@ -8,11 +8,13 @@ import Badge from "@/components/ui/badge";
 import Heart from "../../../assets/heart.svg";
 import Repost from "../../../assets/repost.svg";
 import Filter from "@/components/widgets/filter/Filter";
-
+import SidebarMenu from "@/components/widgets/main/SidebarMenu";
+import { publicLinks } from "@/app/constants/sidebar/links";
 export default function NewsPage() {
   return (
-    <>
-      <main className="flex flex-col w-full   gap-[10px] ">
+    <div className="grid grid-cols-[280px,minmax(0,1fr)]  items-start">
+      <SidebarMenu links={publicLinks} />
+      <main className="flex flex-col w-full   gap-[10px] mt-[20px] ">
         <Title
           className="md:bg-maincolor transition-all duration-200 rounded-[10px]"
           page="Новости"
@@ -70,7 +72,7 @@ export default function NewsPage() {
           </div>
         </div>
       </main>
-      <Filter className="sticky top-[20px]" />
-    </>
+      {/* <Filter className="sticky top-[20px]" /> */}
+    </div>
   );
 }

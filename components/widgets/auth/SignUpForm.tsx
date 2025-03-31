@@ -10,7 +10,7 @@ import { z } from "zod";
 import ModeToggle from "../mode/ModeToggle";
 import { ErrorMessage } from "@hookform/error-message";
 import Link from "next/link";
-
+import { useSignUp } from "@/query-hooks/auth";
 const SignUpForm = () => {
   const {
     control,
@@ -20,8 +20,10 @@ const SignUpForm = () => {
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { mutateAsync } = useSignUp();
+  const onSubmit = async ({ data }) => {
+    const result = mutateAsync(data);
+    console.log(result);
   };
   return (
     <Form

@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowSlider from "../../../assets/ArrowSlider.svg";
 import Image from "next/image";
+import { fillCurrentMonth } from "@/utils/fillCurrentMonth";
+import useScheduleStore from "@/store/useSchedule";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -67,49 +70,49 @@ const settings = {
   //   },
   // ],
 };
+const calendar = fillCurrentMonth();
 const ScheduleSlider = () => {
+  const sliderRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    const initialIndex = calendar.findIndex((item) => item.isCurrent);
+
+    return initialIndex !== -1 ? initialIndex : 0;
+  });
+  const { setScheduleDay } = useScheduleStore();
+  useEffect(() => {
+    if (sliderRef.current && selectedIndex !== null) {
+      sliderRef.current.slickGoTo(selectedIndex);
+    }
+    setScheduleDay(calendar[selectedIndex]);
+  }, [selectedIndex]);
+
+  const handleDayClick = (index, day) => {
+    setSelectedIndex(index);
+  };
+
   return (
-    <div className="slider-container  flex-1  ">
-      <Slider className="p-5" {...settings}>
-        <button>
-          <h1>пн</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>вт</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>ср</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>чт</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>пт</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>ст</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>вс</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>пн</h1>
-          <span>12</span>
-        </button>
-        <button>
-          <h1>пн</h1>
-          <span>12</span>
-        </button>
+    <div className="slider-container flex-1">
+      <Slider
+        ref={(slider) => (sliderRef.current = slider)}
+        className="p-5"
+        {...settings}
+      >
+        {calendar.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => handleDayClick(index, item)}
+            className={`rounded-lg p-2 transition-colors ${
+              index === selectedIndex
+                ? "bg-primary text-white"
+                : "hover:bg-gray-100"
+            }`}
+          >
+            <h1 className="text-sm font-medium">{item.day}</h1>
+            <span className="text-lg">{item.number}</span>
+          </button>
+        ))}
       </Slider>
     </div>
   );
 };
-
 export default ScheduleSlider;

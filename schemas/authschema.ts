@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 const regExpMail = new RegExp(
   /^[a-zA-Z0-9._%+-]+@(surgu\.ru|edu\.surgu\.ru)*$/i
 );
@@ -23,7 +24,7 @@ export const signUpSchema = z
     middleName: z
       .string()
       .optional()
-      .transform((value) => (value ? value : undefined)), // Преобразует пустую строку в undefined
+      .transform((value) => (value ? value : undefined)),
     surname: z
       .string()
       .min(1, { message: "Это поле является обязательным к заполнению" }),

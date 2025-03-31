@@ -96,7 +96,7 @@
 } */
 body {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", "Montserrat Fallback";
   font-size: 16px;
   background-color: #eceffb;
   transition: background-color var(--transition-duration),
@@ -108,4 +108,41 @@ body {
 .react-toggle:hover .react-toggle-track {
   background-color: var(--primary) !important;
   opacity: 0.8;
+}
+@keyframes moveInOut {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.robot {
+  animation: moveInOut 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.2s ease-out forwards;
 }

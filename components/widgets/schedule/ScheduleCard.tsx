@@ -4,11 +4,22 @@ import Image from "next/image";
 import Teach from "../../../assets/teach.svg";
 import Map from "../../../assets/map.svg";
 import Zametka from "../../../assets/zametka.svg";
-import type { Pair } from "@/types/schedule";
+import type { Lesson } from "@/types/schedule";
 interface IScheduleCard {
-  pair: Pair;
+  pair: Lesson;
   onClick?: () => void;
 }
+const time = [
+  { start: "8:30", end: "9:50" },
+  { start: "10:00", end: "11:20" },
+  { start: "11:30", end: "12:50" },
+  { start: "13:20", end: "14:40" },
+  { start: "14:50", end: "16:10" },
+  { start: "16:20", end: "17:40" },
+  { start: "18:00", end: "19:20" },
+  { start: "19:30", end: "20:50" },
+];
+
 const ScheduleCard: React.FC<IScheduleCard> = ({ pair, onClick }) => {
   return (
     <div
@@ -17,30 +28,36 @@ const ScheduleCard: React.FC<IScheduleCard> = ({ pair, onClick }) => {
     >
       <div className="py-[15px] px-[10px] bg-background rounded-[10px]">
         <div className="flex justify-between items-center pb-[15px] border-b border-border">
-          <span className="flex-1">{pair.subject}</span>
+          <span className="flex-1">{pair.name.replace(/[0-9]/g, "")}</span>
           <div className="flex items-center gap-[10px]">
             <span className="p-[5px] bg-primary text-white rounded-[3px] text-sm">
               {pair.type}
             </span>
-            <span className="p-[5px] rounded-[3px] text-white bg-group text-sm">
-              {pair.group}
-            </span>
+            {!!pair.subGroup && (
+              <span
+                className={`p-[5px] rounded-[3px] text-white ${
+                  pair.subGroup === 1 ? "bg-group" : "bg-[#0D9739]"
+                }  text-sm`}
+              >
+                {`п/г ${pair.subGroup}`}
+              </span>
+            )}
           </div>
         </div>
         <div className="flex flex-col justify-center gap-[7px] py-[15px] border-b border-border">
           <div className="inline-flex items-center gap-[10px]">
             <Image src={Map} alt="map" />
-            <span>{pair.room}</span>
+            <span>{pair.cabinet}</span>
           </div>
           <div className="inline-flex items-center gap-[10px]">
             <Image src={Teach} alt="teacher" />
-            <span>{pair.teacher}</span>
+            <span>{pair.teacherId ? pair.teacherId : "Нет преподавателя"}</span>
           </div>
         </div>
         <div className="flex items-center gap-[10px] text-ellipsis overflow-hidden pt-[15px]">
           <Image src={Zametka} alt="note" />
           <span className="text-ellipsis overflow-hidden text-nowrap">
-            {pair.note}
+            Заметки нет
           </span>
         </div>
       </div>
