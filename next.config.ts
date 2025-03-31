@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  env: {
+    TOKEN: process.env.TOKEN,
+  },
 };
 
 export default nextConfig;

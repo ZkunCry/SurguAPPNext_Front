@@ -16,6 +16,7 @@ axiosInstance.interceptors.request.use(async (config) => {
     if (accessToken) {
       config.headers.set(
         "cookie",
+        `Authorization: 623|fE83dOZCesmoLe77rGBDOrM2ft8QA1Y2Mhsdfr8adeb5ddc6`,
         `accessToken=${accessToken};refreshToken=${refreshToken}`
       );
     }

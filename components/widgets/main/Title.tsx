@@ -1,8 +1,11 @@
+"use client";
 import Container from "@/components/ui/container";
 import React from "react";
 import Arrow from "../../../assets/arrow.svg";
 import Image from "next/image";
 import { cn } from "@/utils/utils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export interface TitleProps extends React.HTMLProps<HTMLDivElement> {
   className?: string; // Дополнительные классы для стилизации
@@ -18,6 +21,7 @@ const Title: React.FC<TitleProps> = ({
   children,
   ...props
 }) => {
+  const router = useRouter();
   return (
     <div
       className={cn("w-full bg-maincolor rounded-[10px]", className)}
@@ -25,16 +29,19 @@ const Title: React.FC<TitleProps> = ({
     >
       <Container>
         <div className="flex justify-between items-center py-[12.5px] gap-[15px]">
-          <div className="flex w-full justify-between items-center gap-[15px]">
+          <div className="flex w-full  items-center gap-[15px]">
             {hasBack ? (
-              <div className="relative w-[40px] h-[40px]">
+              <button
+                onClick={() => router.back()}
+                className="relative w-[40px] h-[40px]"
+              >
                 <Image
                   className="border border-primary rounded-[50px] p-[10px]"
                   src={Arrow}
                   fill
                   alt="arrowback"
                 />
-              </div>
+              </button>
             ) : (
               ""
             )}
