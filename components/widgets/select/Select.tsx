@@ -58,7 +58,10 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
   };
 
   return (
-    <div ref={wrapperRef} className={`relative w-full ${className}`}>
+    <div
+      ref={wrapperRef}
+      className={`relative w-full max-w-[500px] ${className}`}
+    >
       <div
         className={`
           flex items-center justify-between p-2.5 rounded-md border

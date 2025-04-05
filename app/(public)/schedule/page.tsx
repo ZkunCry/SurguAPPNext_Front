@@ -18,10 +18,9 @@ export default async function SchedulePage() {
   });
 
   return (
-    <Grid className="md:grid-cols-[minmax(0,1fr),280px]">
-      <SidebarMenu links={publicLinks} />
+    <>
       <ScheduleMain groups={result} />
       <ScheduleAside />
-    </Grid>
+    </>
   );
 }

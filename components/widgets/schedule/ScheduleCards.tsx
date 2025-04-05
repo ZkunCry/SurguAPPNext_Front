@@ -18,7 +18,7 @@ const ScheduleCards = () => {
   const currentDay = schedule
     ?.filter((pair) => pair.day === scheduleDay?.day.toUpperCase())
     .sort((a, b) => a.position - b.position);
-  console.log(currentDay);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

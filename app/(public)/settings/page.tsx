@@ -5,37 +5,32 @@ import Moon from "../../../assets/moon.svg";
 import Arrow from "../../../assets/arrowsettings.svg";
 import Image from "next/image";
 import CustomToggle from "@/components/widgets/mode/CustomToggle";
-import Grid from "@/components/widgets/main/Grid";
-import SidebarMenu from "@/components/widgets/main/SidebarMenu";
-import { publicLinks } from "@/app/constants/sidebar/links";
+
 import SettingsInfo from "@/components/widgets/settings/SettingsInfo";
 export default function SettingsPage() {
   return (
-    <Grid>
-      <SidebarMenu links={publicLinks} />
-      <main className=" flex flex-col w-full gap-[15px] overflow-hidden ">
-        <Title className="bg-maincolor rounded-[10px]" page="Настройки" />
-        <div className="min-h-[637px] flex flex-col items-center  p-[10px] bg-maincolor">
-          <SettingsInfo />
-          <div className="w-full flex flex-col mt-[55px] gap-[10px]">
-            <div className="flex bg-accent rounded-[10px] w-full p-[15px] gap-[15px]">
-              <Image src={Earth} alt="earth" />
-              <h1 className="flex-1">Язык</h1>
-              <span className="text-primary">Русский</span>
-            </div>
-            <div className="flex bg-accent rounded-[10px] w-full p-[15px] gap-[15px]">
-              <Image src={Moon} alt="moon" />
-              <h1 className="flex-1">Темная тема</h1>
-              <CustomToggle />
-            </div>
-            <div className="flex bg-accent rounded-[10px] w-full p-[15px] gap-[15px]">
-              <Image src={Pass} alt="pass" />
-              <h1 className="flex-1">Изменить пароль</h1>
-              <Image src={Arrow} alt="arrow" />
-            </div>
+    <main className=" flex flex-col w-full gap-[15px] overflow-hidden ">
+      <Title className="bg-maincolor rounded-[10px]" page="Настройки" />
+      <div className="min-h-[637px] flex flex-col items-center  p-[10px] bg-maincolor">
+        <SettingsInfo />
+        <div className="w-full flex flex-col mt-[55px] gap-[10px]">
+          <div className="flex bg-accent rounded-[10px] w-full p-[15px] gap-[15px]">
+            <Image src={Earth} alt="earth" />
+            <h1 className="flex-1">Язык</h1>
+            <span className="text-primary">Русский</span>
+          </div>
+          <div className="flex bg-accent rounded-[10px] w-full p-[15px] gap-[15px]">
+            <Image src={Moon} alt="moon" />
+            <h1 className="flex-1">Темная тема</h1>
+            <CustomToggle />
+          </div>
+          <div className="flex bg-accent rounded-[10px] w-full p-[15px] gap-[15px]">
+            <Image src={Pass} alt="pass" />
+            <h1 className="flex-1">Изменить пароль</h1>
+            <Image src={Arrow} alt="arrow" />
           </div>
         </div>
-      </main>
-    </Grid>
+      </div>
+    </main>
   );
 }

@@ -46,18 +46,7 @@ const Title: React.FC<TitleProps> = ({
               ""
             )}
             {page ? (
-              <h1
-                style={{
-                  background:
-                    "radial-gradient(110.5% 150.26% at 100% -5.51%, #4562D6 0%, #031831 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                }}
-                className="uppercase text-[22px]"
-              >
-                {page}
-              </h1>
+              <h1 className="uppercase text-[22px] dark:text-white ">{page}</h1>
             ) : (
               ""
             )}

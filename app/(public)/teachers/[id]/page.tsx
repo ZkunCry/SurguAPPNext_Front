@@ -12,7 +12,7 @@ export default async function TeacherPage({
   return (
     <div className="flex flex-col gap-[10px] ">
       <Title hasBack page="Преподаватель" />
-      <div className="flex bg-maincolor pb-[15px] flex-col w-full gap-[10px] items-center rounded-[10px] ">
+      <div className="flex bg-maincolor pb-[15px] flex-col w-full gap-[10px] items-center rounded-[10px] p-[10px] ">
         <div className="w-full items-center justify-center flex flex-col  gap-[10px] border-b border-border">
           <div className="bg-[#A6A9B5] w-[100px] aspect-square rounded-full my-[30px]"></div>
           <div className="flex flex-col items-center gap-[5px]">

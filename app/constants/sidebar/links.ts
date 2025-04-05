@@ -8,6 +8,8 @@ import Favourites from "../../../assets/favourites.svg";
 export const publicLinks: LinkSidebar[] = [
   { name: "Новости", href: "/news", image: Home },
   { name: "Расписание", href: "/schedule", image: Schedule },
+  { name: "Учебные планы", href: "/syllabus", image: Schedule },
+
   { name: "Преподаватели", href: "/teachers", image: Teachers },
   { name: "Настройки", href: "/settings", image: Settings },
 ];

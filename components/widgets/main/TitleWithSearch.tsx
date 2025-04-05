@@ -18,30 +18,10 @@ const TitleWithSearch: React.FC<TitleProps> = ({
   const handleSearchClick = () => {
     setIsSearchActive((prev) => !prev);
   };
-  console.log("test");
+
   return (
-    <Title page={!isSearchActive && page} {...props}>
-      {isSearchActive && (
-        <div className="flex w-full ">
-          <button onClick={handleSearchClick} className=" aspect-square">
-            <Image
-              className="w-full aspect-square border border-primary rounded-[50px] p-[10px]"
-              src={ArrowBack}
-              alt="arrowback"
-            />
-          </button>
-          <Input
-            className="border-none focus:outline-none"
-            placeholder={placeholder}
-            onChange={onChange}
-          />
-        </div>
-      )}
-      {!isSearchActive && (
-        <button onClick={handleSearchClick}>
-          <Image src={Search} alt="search" />
-        </button>
-      )}
+    <Title page={ page} {...props}>
+    
     </Title>
   );
 };
