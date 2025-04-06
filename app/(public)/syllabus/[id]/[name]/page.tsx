@@ -1,5 +1,7 @@
 import Title from "@/components/widgets/main/Title";
 import MenuLinks from "@/components/widgets/menuLinks/MenuLinks";
+import SearchComponent from "@/components/widgets/search/SearchComponent";
+import Directions from "@/components/widgets/syllabus/Directions";
 import axiosInstance from "@/utils/axiosInstance";
 
 export default async function DirectionPage({
@@ -11,13 +13,17 @@ export default async function DirectionPage({
   const { data } = await axiosInstance.get(
     `/schedule/plan/details?code=${result.id}`
   );
-  console.log(data);
   return (
     <main className="flex flex-col gap-[15px]">
       <Title page={decodeURIComponent(result.name)} hasBack />
+      <div className="bg-maincolor rounded-[10px] p-[10px]">
+        <MenuLinks count={data.courseCount} />
+      </div>
+
+      <SearchComponent />
       <section className="flex flex-col bg-maincolor rounded-[10px] p-[10px] ">
-        <div className="flex flex-col">
-          <MenuLinks count={data.courseCount} />
+        <div className="flex flex-col gap-[15px]">
+          <Directions directions={data.classStudyPlanInfo} />
         </div>
       </section>
     </main>

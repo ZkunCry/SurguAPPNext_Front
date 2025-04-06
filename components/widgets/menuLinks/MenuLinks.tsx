@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import React from "react";
 
 const MenuLinks = ({ count }) => {
   const pathname = usePathname();
-  console.log(pathname);
+  const params = useSearchParams().get("course");
   return (
-    <nav className="w-full">
+    <nav className="w-full py-[10px]">
       <ul className="flex flex-wrap gap-[16px]">
         {Array(count)
           .fill(0)
@@ -15,11 +15,11 @@ const MenuLinks = ({ count }) => {
             <li key={index}>
               <Link
                 className={` ${
-                  pathname.includes(`/${index + 1}`)
-                    ? "bg-[#292A2D] text-white"
-                    : "bg-transparent text-black border border-[#292A2D]"
+                  params === `${index + 1}`
+                    ? "bg-primary text-white"
+                    : "bg-transparent text-black border border-primary"
                 }  italic text-[18px] px-[24px] py-[9px] rounded-[10px]`}
-                href={pathname + `/${index + 1}`}
+                href={pathname + `?course=${index + 1}`}
               >
                 {index + 1} курс
               </Link>
