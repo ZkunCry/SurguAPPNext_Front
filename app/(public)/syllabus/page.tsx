@@ -1,5 +1,6 @@
 import Title from "@/components/widgets/main/Title";
 import axiosInstance from "@/utils/axiosInstance";
+import { AxiosError } from "axios";
 import Link from "next/link";
 type EducationData = {
   year: number[];
@@ -31,9 +32,9 @@ export default async function SyllabusPage() {
     "/schedule/plan/list"
   );
   const specialityPairs = transform(directions);
-  console.log(specialityPairs);
   return (
     <main className="flex flex-col w-full gap-[15px] overflow-hidden px-[5px] ">
+      {}
       <Title page="Учебные планы" />
       <section className="flex flex-col bg-maincolor p-[10px] rounded-[10px]">
         <div className="flex flex-col">

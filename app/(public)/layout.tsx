@@ -10,8 +10,8 @@ export default async function PublicLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookie = (await cookies()).getAll();
-  console.log(cookie);
+  // const cookie = (await cookies()).getAll();
+  // console.log(cookie);
   return (
     <div className="flex relative w-full h-full flex-col items-start overflow-auto ">
       <HeaderMain />
