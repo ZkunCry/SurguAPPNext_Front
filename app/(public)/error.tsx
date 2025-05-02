@@ -40,7 +40,7 @@ export default function ErrorBoundary({
           className="w-36 h-36 mx-auto mb-8 animate-shake"
         />
 
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+        <h1 className="text-2xl font-bold dark:!text-white text-gray-800   mb-4">
           Ой! Произошла ошибка
         </h1>
         <p className="text-gray-600 mb-8 leading-relaxed">
@@ -48,7 +48,7 @@ export default function ErrorBoundary({
           или попробуйте позже.
         </p>
 
-        <div className="mt-6 p-3 bg-gray-50 rounded-lg text-gray-500 text-sm">
+        <div className="mt-6 p-3 bg-maincolor rounded-lg text-gray-500 text-sm mb-2">
           {`Код ошибки: ${code} | ${message}`}
         </div>
         <Button

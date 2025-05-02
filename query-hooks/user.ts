@@ -5,7 +5,6 @@ export function useGetUserById(
   id: number | null,
   options?: UseQueryOptions<IUser, Error>
 ) {
-  console.log(id);
   return useQuery<IUser, Error>({
     queryKey: [`user/${id}`],
     queryFn: async () => UserService.getUserById(id),

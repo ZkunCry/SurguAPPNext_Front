@@ -1,3 +1,4 @@
+import { UserService } from "@/services/user/userService";
 import type { IUser } from "@/types/user";
 import { create } from "zustand";
 interface IUserState {
@@ -16,6 +17,8 @@ const useUserStore = create<IUserState>((set) => ({
   getUserByStorage() {
     const storedId = localStorage.getItem("id");
     if (storedId) {
+      const userById = UserService.getUserById(JSON.parse(storedId));
+      console.log(userById);
       return JSON.parse(storedId) as number;
     }
     return null;

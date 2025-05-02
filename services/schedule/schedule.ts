@@ -8,4 +8,7 @@ export const ScheduleService = {
 
     return data;
   },
+  async transformGroup(groups){
+    
+  }
 };

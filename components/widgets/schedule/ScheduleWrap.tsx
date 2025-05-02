@@ -3,20 +3,25 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import SelectMenu from "../select/Select";
 import useScheduleStore from "@/store/useSchedule";
+import ScheduleWrapSkeleton from "./ScheduleWrapSkeleton";
 const SelectMenuWrap = ({ items }) => {
   const [selectedGroup, setSelected] = useState<string | null>();
   const { setGroup } = useScheduleStore();
   useEffect(() => {
     if (typeof window !== undefined) {
-      setSelected(localStorage.getItem("group"));
+      const result = localStorage.getItem("group");
+      setSelected(result);
     }
   }, []);
   useEffect(() => {
     setGroup(selectedGroup);
     localStorage.setItem("group", selectedGroup);
   }, [selectedGroup]);
-  return (
+  return selectedGroup === undefined ? (
+    <ScheduleWrapSkeleton />
+  ) : (
     <SelectMenu
+      isSearchable
       value={selectedGroup}
       onChange={setSelected}
       placeholder="Выберите группу"

@@ -5,7 +5,6 @@ export function useGetScheduleByGroup(
   group: string | null,
   options?: UseQueryOptions<Schedule, Error>
 ) {
-  console.log(group);
   return useQuery<Schedule, Error>({
     queryKey: ["schedule", group],
     staleTime: 60 * 60 * 1000,

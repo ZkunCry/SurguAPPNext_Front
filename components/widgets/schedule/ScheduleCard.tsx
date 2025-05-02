@@ -5,8 +5,10 @@ import Teach from "../../../assets/teach.svg";
 import Map from "../../../assets/map.svg";
 import Zametka from "../../../assets/zametka.svg";
 import type { Lesson } from "@/types/schedule";
+import { cn } from "@/utils/utils";
 interface IScheduleCard {
   pair: Lesson;
+  subGroup: string;
   onClick?: () => void;
 }
 const time = [
@@ -20,10 +22,13 @@ const time = [
   { start: "19:30", end: "20:50" },
 ];
 
-const ScheduleCard: React.FC<IScheduleCard> = ({ pair, onClick }) => {
+const ScheduleCard: React.FC<IScheduleCard> = ({ pair, onClick, subGroup }) => {
   return (
     <div
-      className="flex flex-col card p-[10px]  rounded-[10px] gap-[10px] cursor-pointer"
+      className={cn(
+        "flex flex-col card p-[10px]  rounded-[10px] gap-[10px] cursor-pointer",
+        +subGroup !== pair.subGroup && +subGroup !== 0 ? "opacity-25" : ""
+      )}
       onClick={() => onClick && onClick()}
     >
       <div className="py-[15px] px-[10px] bg-background rounded-[10px]">

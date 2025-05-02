@@ -3,8 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useScheduleStore from "@/store/useSchedule";
 import SelectMenu from "../select/Select";
+import ScheduleWrapSkeleton from "./ScheduleWrapSkeleton";
 const ScheduleSubgroupWrap = ({ subGroups }) => {
-  console.log(subGroups);
   const [selectedSubGroup, setSelected] = useState<string | null>();
   const { setSubGroup } = useScheduleStore();
   useEffect(() => {
@@ -16,6 +16,7 @@ const ScheduleSubgroupWrap = ({ subGroups }) => {
     setSubGroup(selectedSubGroup);
     localStorage.setItem("subgroup", selectedSubGroup);
   }, [selectedSubGroup]);
+
   return (
     <SelectMenu
       value={selectedSubGroup}
