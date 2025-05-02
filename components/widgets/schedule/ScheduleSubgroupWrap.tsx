@@ -12,12 +12,15 @@ const ScheduleSubgroupWrap = ({ subGroups }) => {
       setSelected(localStorage.getItem("subgroup"));
     }
   }, []);
+  console.log(selectedSubGroup);
   useEffect(() => {
     setSubGroup(selectedSubGroup);
     localStorage.setItem("subgroup", selectedSubGroup);
   }, [selectedSubGroup]);
 
-  return (
+  return selectedSubGroup === undefined ? (
+    <ScheduleWrapSkeleton />
+  ) : (
     <SelectMenu
       value={selectedSubGroup}
       onChange={setSelected}

@@ -10,12 +10,16 @@ const SelectMenuWrap = ({ items }) => {
   useEffect(() => {
     if (typeof window !== undefined) {
       const result = localStorage.getItem("group");
+      console.log(result);
       setSelected(result);
     }
   }, []);
+
   useEffect(() => {
-    setGroup(selectedGroup);
-    localStorage.setItem("group", selectedGroup);
+    if (selectedGroup !== undefined) {
+      setGroup(selectedGroup);
+      localStorage.setItem("group", selectedGroup);
+    }
   }, [selectedGroup]);
   return selectedGroup === undefined ? (
     <ScheduleWrapSkeleton />
