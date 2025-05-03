@@ -8,6 +8,11 @@ export function useGetUserById(
   return useQuery<IUser, Error>({
     queryKey: [`user/${id}`],
     queryFn: async () => UserService.getUserById(id),
+    retry: (falureCount, error) => {
+      console.log("test");
+      if (error.message === "Требуется повторная авторизация") return false;
+      return falureCount < 2;
+    },
     ...options,
   });
 }

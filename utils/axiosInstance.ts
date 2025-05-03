@@ -6,6 +6,12 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+export async function deleteCookies() {
+  console.log(typeof window);
+  const { cookies } = await import("next/headers");
+  (await cookies()).set("accessToken", "");
+}
+
 axiosInstance.interceptors.request.use(async (config) => {
   const isSSR = typeof window === "undefined";
   console.log(isSSR);
@@ -23,32 +29,66 @@ axiosInstance.interceptors.request.use(async (config) => {
   }
   return config;
 });
+let subscribers = [];
+
+function addSubscriber(callback) {
+  subscribers.push(callback);
+}
+
+function onRefreshed(newToken) {
+  subscribers.forEach((callback) => callback(newToken));
+  subscribers = [];
+}
+let isRefreshing = false; // Флаг для предотвращения параллельных обновлений
+
 axiosInstance.interceptors.response.use(
-  (response) => response, // Возвращаем ответ, если все хорошо
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
-
-    if (
-      error.response &&
-      error.response.status === 401 &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
-
-      try {
-        const refreshResponse = await axios.get(`${API_URL}/access_token`, {
-          withCredentials: true,
-        });
-        console.log(refreshResponse.headers);
-        return axiosInstance(originalRequest);
-      } catch (refreshError) {
-        console.error("Ошибка обновления токена", refreshError);
-        return Promise.reject(refreshError);
-      }
+    if (error.response?.status !== 401 || originalRequest._retry) {
+      return Promise.reject(error);
     }
 
-    // Если ошибка не 401 или другая проблема
-    return Promise.reject(error);
+    if (isRefreshing) {
+      return new Promise((resolve) => {
+        const retryOriginalRequest = () => {
+          resolve(axiosInstance(originalRequest));
+        };
+        addSubscriber(retryOriginalRequest);
+      });
+    }
+
+    originalRequest._retry = true;
+    isRefreshing = true;
+
+    try {
+      const { data } = await axios.get(`${API_URL}/access_token`, {
+        withCredentials: true,
+      });
+
+      // Повторяем оригинальный запрос
+      return axiosInstance(originalRequest);
+    } catch (refreshError) {
+      // Ловим именно ошибку просроченного refreshToken
+      if (
+        refreshError.response?.status === 401 &&
+        refreshError.response.data === "Refresh token is expired or not present"
+      ) {
+        const error = new Error("Требуется повторная авторизация");
+        error.status = 401;
+        error.data = { message: "Требуется повторная авторизация" };
+        const { data } = await axios.get(`/api/logout`, {
+          withCredentials: true,
+        });
+        const test = await fetch("/api/test");
+        return Promise.reject(error);
+      }
+
+      // Другие ошибки при обновлении
+      return Promise.reject(refreshError);
+    } finally {
+      isRefreshing = false;
+    }
   }
 );
 export default axiosInstance;
