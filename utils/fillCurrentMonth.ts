@@ -13,7 +13,15 @@ const months = [
   "ноябрь",
   "декабрь",
 ];
-export function fillCurrentMonth() {
+export type Calendar = {
+  day: string;
+  number: number;
+  month: string;
+  year: number;
+  monthNumber: number;
+  isCurrent: boolean;
+}[];
+export function fillCurrentMonth(): Calendar {
   const currentDate = new Date(); // Получаем текущую дату один раз
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1; // Числовой формат месяца (1-12)

@@ -2,8 +2,12 @@ import type { NextRequest } from "next/server";
 
 const apiServer = "http://localhost:3001/";
 
-async function proxy(req: NextRequest, ctx: { params: { proxy: string[] } }) {
-  let url = `${apiServer}/${ctx.params.proxy.join("/")}`;
+async function proxy(
+  req: NextRequest,
+  ctx: { params: Promise<{ proxy: string[] }> }
+) {
+  const paramPromise = await ctx.params;
+  let url = `${apiServer}${paramPromise.proxy.join("/")}`;
   console.log("@url", url);
   const search = req.nextUrl.searchParams.toString();
   if (search) {
