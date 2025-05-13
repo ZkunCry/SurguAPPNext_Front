@@ -6,4 +6,8 @@ export const UserService = {
     const { data } = await axiosInstance.get<IUser>(`/user?id=${id}`);
     return data;
   },
+  async getUserMe() {
+    const { data } = await axiosInstance.get<IUser>("/user/me");
+    return data;
+  },
 };

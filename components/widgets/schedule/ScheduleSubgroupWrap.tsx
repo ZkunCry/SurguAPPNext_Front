@@ -14,8 +14,10 @@ const ScheduleSubgroupWrap = ({ subGroups }) => {
   }, []);
   console.log(selectedSubGroup);
   useEffect(() => {
-    setSubGroup(selectedSubGroup);
-    localStorage.setItem("subgroup", selectedSubGroup);
+    if (selectedSubGroup !== undefined) {
+      setSubGroup(selectedSubGroup);
+      localStorage.setItem("subgroup", selectedSubGroup);
+    }
   }, [selectedSubGroup]);
 
   return selectedSubGroup === undefined ? (

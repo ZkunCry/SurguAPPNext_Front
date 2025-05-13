@@ -64,8 +64,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
     >
       <div
         className={`
-          flex items-center justify-between p-2.5 rounded-md border
-          ${
+          flex items-center justify-between p-2.5 rounded-md border ${
             isDisabled
               ? "bg-gray-50 cursor-not-allowed"
               : "bg-white hover:border-gray-400 cursor-pointer"
@@ -95,7 +94,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full p-1.5 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full p-1.5 text-sm border rounded-md focus:outline-hidden focus:ring-1 focus:ring-blue-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 autoFocus

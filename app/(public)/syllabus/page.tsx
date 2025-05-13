@@ -36,7 +36,7 @@ export default async function SyllabusPage() {
   const groupedDirections = groupByEducationType(directions);
 
   return (
-    <main className="flex flex-col w-full gap-[15px] overflow-hidden px-[5px]">
+    <main className="flex flex-col w-full gap-[15px] overflow-hidden px-[5px] fade-in">
       <Title page="Учебные планы" />
       <section className="flex flex-col bg-maincolor p-[10px] rounded-[10px]">
         <div className="flex flex-col">
@@ -53,8 +53,8 @@ export default async function SyllabusPage() {
                 {items.map((pair) => (
                   <div
                     key={pair.code}
-                    className="hover:-translate-y-[10px] transition-transform ease-in-out duration-200 relative max-w-[460px] w-full flex flex-col justify-start p-[15px] border 
-                      border-[#292A2D] rounded-[20px] gap-[15px]"
+                    className="hover:-translate-y-[10px] transition-transform ease-in-out duration-200 relative max-w-[460px] w-full flex flex-col justify-start p-[15px]  
+                     bg-background rounded-[20px] gap-[15px]"
                   >
                     <div className="flex justify-between items-center pb-[15px] border-b border-[#ACA5A5]">
                       <h3 className="font-bold">{pair.code}</h3>

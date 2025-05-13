@@ -7,14 +7,12 @@ const axiosInstance = axios.create({
 });
 
 export async function deleteCookies() {
-  console.log(typeof window);
   const { cookies } = await import("next/headers");
   (await cookies()).set("accessToken", "");
 }
 
 axiosInstance.interceptors.request.use(async (config) => {
   const isSSR = typeof window === "undefined";
-  console.log(isSSR);
   if (isSSR) {
     const { cookies } = await import("next/headers");
     const accessToken = (await cookies()).get("accessToken")?.value;
@@ -39,7 +37,7 @@ function onRefreshed(newToken) {
   subscribers.forEach((callback) => callback(newToken));
   subscribers = [];
 }
-let isRefreshing = false; // Флаг для предотвращения параллельных обновлений
+let isRefreshing = false;
 
 axiosInstance.interceptors.response.use(
   (response) => response,
@@ -71,8 +69,10 @@ axiosInstance.interceptors.response.use(
     } catch (refreshError) {
       // Ловим именно ошибку просроченного refreshToken
       if (
-        refreshError.response?.status === 401 &&
-        refreshError.response.data === "Refresh token is expired or not present"
+        (refreshError.response?.status === 401 &&
+          refreshError.response.data ===
+            "Refresh token is expired or not present") ||
+        refreshError.response.data === "No token has been provided"
       ) {
         const error = new Error("Требуется повторная авторизация");
         error.status = 401;

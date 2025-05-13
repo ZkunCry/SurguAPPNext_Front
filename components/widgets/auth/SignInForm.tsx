@@ -14,6 +14,8 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useSignIn } from "@/query-hooks/auth";
 import useUserStore from "@/store/useUser";
 import { redirect } from "next/navigation";
+import { LoaderCircle } from "lucide-react";
+
 const SignInForm = () => {
   const { setCredentials } = useUserStore();
   const {
@@ -24,7 +26,8 @@ const SignInForm = () => {
     resolver: zodResolver(signInSchema),
   });
 
-  const { mutateAsync } = useSignIn();
+  const { mutateAsync, isPending } = useSignIn();
+  console.log(isPending);
   const onSubmit = async ({
     data: { email, password },
   }: {
@@ -36,7 +39,7 @@ const SignInForm = () => {
   };
   return (
     <Form
-      className="flex flex-col min-w-[580px] items-center dark:bg-foreground  bg-form rounded-[10px] p-[20px]"
+      className="flex flex-col min-w-[580px] items-center dark:bg-maincolor  bg-form rounded-[10px] p-[20px]"
       onSubmit={onSubmit}
       control={control}
     >
@@ -88,6 +91,7 @@ const SignInForm = () => {
 
           <Input
             id="password"
+            type="password"
             placeholder="Введите пароль"
             {...register("password")}
           />
@@ -99,16 +103,17 @@ const SignInForm = () => {
             )}
           />
         </div>
-        <div className="form-group text-left">
-          <span className="text-text">Запомнить меня</span>
-        </div>
       </div>
       <div className="footer w-full flex flex-col items-center gap-y-[20px] mb-[30px]">
         <Button
           active={isValid}
           className="min-w-[180px] px-[20px] text-[#1C1D28] bg-grey"
         >
-          Войти
+          {isPending ? (
+            <LoaderCircle size={30} className="animate-spin" />
+          ) : (
+            "Войти"
+          )}
         </Button>
         <span className="text-text">
           Нет аккаунта?{" "}

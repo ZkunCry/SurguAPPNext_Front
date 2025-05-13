@@ -20,7 +20,7 @@ const SearchComponent = ({ cb }) => {
   console.log(searchString);
   return (
     <Input
-      className="bg-maincolor border-none focus-visible:!outline focus-visible:!outline-primary"
+      className="bg-maincolor border-none focus-visible:outline! focus-visible:outline-primary!"
       placeholder="Поиск"
       onChange={(e) => setSearchStr(e.target.value)}
     />

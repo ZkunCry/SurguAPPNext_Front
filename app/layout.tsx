@@ -23,13 +23,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${montserrat.variable}  bg-background`}>
+      <body className={`${montserrat.variable} !bg-background`}>
         <Providers>
-          <ThemeProvider>
-            <div className="flex flex-col  h-[1px] relative overflow-y-auto overflow-x-hidden max-h-dvh w-full min-h-dvh">
+          <ThemeProvider attribute="class">
+            <div className="flex flex-col  h-px relative overflow-y-auto overflow-x-hidden max-h-dvh w-full min-h-dvh">
               {children}
             </div>
-            <Toaster position="bottom-right" />
+            <Toaster
+              position="bottom-right"
+              toastOptions={{
+                className: "!bg-maincolor dark:!text-white !text-dark  ",
+              }}
+            />
           </ThemeProvider>
         </Providers>
       </body>

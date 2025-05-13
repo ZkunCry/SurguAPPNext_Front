@@ -26,7 +26,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
       )}
       {...props}
     >
-      <ul className="flex flex-col gap-[5px] *:border-b *:border-border *:py-[10px] *:gap-[10px] text-main-text">
+      <ul className="flex flex-col gap-[5px] *:border-b *:border-border *:py-[10px] *:gap-[10px]  text-main-text">
         {links.map((item, index) => {
           return (
             <Link key={index} href={item.href} className="inline-flex">

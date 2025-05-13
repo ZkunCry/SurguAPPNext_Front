@@ -9,7 +9,7 @@ import CustomToggle from "@/components/widgets/mode/CustomToggle";
 import SettingsInfo from "@/components/widgets/settings/SettingsInfo";
 export default function SettingsPage() {
   return (
-    <main className=" flex flex-col w-full gap-[15px] overflow-hidden ">
+    <main className=" flex flex-col w-full gap-[15px] overflow-hidden fade-in ">
       <Title className="bg-maincolor rounded-[10px]" page="Настройки" />
       <div className="min-h-[637px] flex flex-col items-center  p-[10px] bg-maincolor">
         <SettingsInfo />

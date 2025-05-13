@@ -6,12 +6,21 @@ export function useGetUserById(
   options?: UseQueryOptions<IUser, Error>
 ) {
   return useQuery<IUser, Error>({
-    queryKey: [`user/${id}`],
+    queryKey: [`user/${id}`, id],
     queryFn: async () => UserService.getUserById(id),
-    retry: (falureCount, error) => {
-      console.log("test");
-      if (error.message === "Требуется повторная авторизация") return false;
-      return falureCount < 2;
+    retry: () => {
+      return false;
+    },
+    ...options,
+  });
+}
+
+export function useGetUserMe(options?: UseQueryOptions<IUser, Error>) {
+  return useQuery<IUser, Error>({
+    queryKey: [`user/me`],
+    queryFn: async () => UserService.getUserMe(),
+    retry: () => {
+      return false;
     },
     ...options,
   });

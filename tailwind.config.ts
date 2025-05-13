@@ -1,19 +1,17 @@
 import type { Config } from "tailwindcss";
-
+/** @type {import('postcss-load-config').Config} */
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  
   darkMode: "class",
   theme: {
     container: {
       center: true,
       padding: "0.62rem",
-      // screens: {
-      //   lg: "1140px",
-      // },
     },
     extend: {
       colors: {
@@ -36,6 +34,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+     '@tailwindcss/postcss': {},
+  ],
 };
 export default config;

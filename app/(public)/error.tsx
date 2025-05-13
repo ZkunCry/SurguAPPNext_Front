@@ -40,7 +40,7 @@ export default function ErrorBoundary({
           className="w-36 h-36 mx-auto mb-8 animate-shake"
         />
 
-        <h1 className="text-2xl font-bold dark:!text-white text-gray-800   mb-4">
+        <h1 className="text-2xl font-bold dark:text-white! text-gray-800   mb-4">
           Ой! Произошла ошибка
         </h1>
         <p className="text-gray-600 mb-8 leading-relaxed">

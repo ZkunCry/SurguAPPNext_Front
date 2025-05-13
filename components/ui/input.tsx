@@ -7,9 +7,9 @@ const inputVariants = cva("input", {
       default:
         "w-full py-[10px] px-[15px] bg-transparent text-[#8B8787] border rounded-[10px] ",
       error:
-        "border-red-500 focus:border-red-500 focus:ring focus:ring-red-500",
+        "border-red-500 focus:border-red-500 focus:ring-3 focus:ring-red-500",
       success:
-        "border-green-500 focus:border-green-500 focus:ring focus:ring-green-500",
+        "border-green-500 focus:border-green-500 focus:ring-3 focus:ring-green-500",
     },
   },
   defaultVariants: {

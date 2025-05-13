@@ -41,11 +41,11 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
         </button>
 
         <ul className="space-y-2">
-          <li className="flex items-center p-2 rounded hover:bg-gray-100 cursor-pointer">
+          <li className="flex items-center p-2 rounded-sm hover:bg-gray-100 cursor-pointer">
             <div className="w-3 h-3 rounded-full bg-blue-600 mr-3"></div>
             <span>Личный</span>
           </li>
-          <li className="flex items-center p-2 rounded hover:bg-gray-100 cursor-pointer">
+          <li className="flex items-center p-2 rounded-sm hover:bg-gray-100 cursor-pointer">
             <div className="w-3 h-3 rounded-full bg-green-600 mr-3"></div>
             <span>Работа</span>
           </li>
@@ -57,13 +57,13 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
         {/* Заголовок календаря */}
         <div className="flex items-center mb-6 gap-4">
           <div className="hidden md:flex gap-1">
-            <button className="px-3 py-1 border rounded hover:bg-gray-100">
+            <button className="px-3 py-1 border rounded-sm hover:bg-gray-100">
               ‹
             </button>
-            <button className="px-3 py-1 border rounded hover:bg-gray-100">
+            <button className="px-3 py-1 border rounded-sm hover:bg-gray-100">
               Сегодня
             </button>
-            <button className="px-3 py-1 border rounded hover:bg-gray-100">
+            <button className="px-3 py-1 border rounded-sm hover:bg-gray-100">
               ›
             </button>
           </div>
@@ -87,7 +87,7 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
             <div
               key={i}
               className={`flex flex-col gap-[10px] bg-white min-h-[400px] md:min-h-[700px] relative border-r border-gray-200 p-2 ${
-                !day.day ? "!bg-gray-100" : ""
+                !day.day ? "bg-gray-100!" : ""
               } `}
             >
               {day.day && <div className="font-medium mb-2">{day.number}</div>}
@@ -97,7 +97,7 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
                     return (
                       <div
                         key={index}
-                        className="flex flex-col  gap-[10px] left-1 right-1 bg-blue-50 border-l-4 border-l-primary rounded p-2  text-sm  min-h-[120px]"
+                        className="flex flex-col  gap-[10px] left-1 right-1 bg-blue-50 border-l-4 border-l-primary rounded-sm p-2  text-sm  min-h-[120px]"
                       >
                         <div className="flex font-medium">
                           <div className="w-full flex justify-between  items-center text-[10px] font-semibold">

@@ -9,10 +9,10 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
         outline: "border border-white",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         transparent: "bg-transparent",
@@ -24,7 +24,7 @@ const buttonVariants = cva(
         icon: "h-9 w-9",
       },
       active: {
-        true: "!bg-primary dark:!text-text text-white",
+        true: "bg-primary! dark:text-text! text-white",
         false: "",
       },
     },

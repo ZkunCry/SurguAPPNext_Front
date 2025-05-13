@@ -5,6 +5,7 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 const CustomToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
+  console.log(resolvedTheme);
   const [mounted, setMounted] = useState(false);
   const onToggleMode = () =>
     resolvedTheme === "dark" ? setTheme("light") : setTheme("dark");

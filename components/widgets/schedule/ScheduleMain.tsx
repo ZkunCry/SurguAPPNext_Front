@@ -11,9 +11,10 @@ const subGroups = [
   { label: "1", value: "1" },
   { label: "2", value: "2" },
 ];
+
 const ScheduleMain = ({ groups }) => {
   return (
-    <main className="flex flex-col w-full gap-[10px] overflow-hidden">
+    <main className="flex flex-col w-full gap-[10px] overflow-hidden fade-in ">
       <TitleWithSearch page="Расписание" placeholder="Поиск учебной группы" />
       <div className="flex flex-col bg-maincolor mt-[5px]  rounded-[10px] px-[10px] pt-[20px] pb-[30px] gap-[30px]">
         <div className="flex flex-1 justify-between items-center text-[18px]">

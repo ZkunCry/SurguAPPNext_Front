@@ -27,11 +27,11 @@ function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className="top-[50%] absolute w-[20px] h-[20px] translate-x-0 translate-y-[-50%] left-[0px] cursor-pointer"
+      className="top-[50%] absolute w-[20px] h-[20px] translate-x-0 translate-y-[-50%] -left-[0px] cursor-pointer"
       style={{ ...style, display: "block" }}
       onClick={onClick}
     >
-      <Image className=" rotate-[-180deg]" src={ArrowSlider} alt="Arrow" />
+      <Image className=" -rotate-180" src={ArrowSlider} alt="Arrow" />
     </div>
   );
 }
