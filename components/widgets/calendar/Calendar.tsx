@@ -1,11 +1,12 @@
 "use client";
+import Sidebar from "@/components/ui/sidebar";
 import type { Lesson, Schedule } from "@/types/schedule";
-import {
-  daysOfWeek,
-  fillCurrentMonth,
-  type Calendar,
-} from "@/utils/fillCurrentMonth";
+import { fillCurrentMonth, type Calendar } from "@/utils/fillCurrentMonth";
+import { pairTimes } from "@/utils/schedule";
 import React from "react";
+import ModalCalendarCreate from "./ModalCalendarCreate";
+import Modal from "../modal/Modal";
+import SidebarCalendar from "./SidebarCalendar";
 type ScheduleByDay = {
   [key: string]: Lesson[];
 };
@@ -34,23 +35,7 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
 
   return (
     <div className="w-full flex h-screen bg-white  relative">
-      {/* <aside className="hidden md:block w-64 border-r border-gray-200 p-4">
-        <div className="text-xl font-medium mb-4">Календарь</div>
-        <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-full mb-6 hover:bg-blue-700">
-          Создать
-        </button>
-
-        <ul className="space-y-2">
-          <li className="flex items-center p-2 rounded-sm hover:bg-gray-100 cursor-pointer">
-            <div className="w-3 h-3 rounded-full bg-blue-600 mr-3"></div>
-            <span>Личный</span>
-          </li>
-          <li className="flex items-center p-2 rounded-sm hover:bg-gray-100 cursor-pointer">
-            <div className="w-3 h-3 rounded-full bg-green-600 mr-3"></div>
-            <span>Работа</span>
-          </li>
-        </ul>
-      </aside> */}
+      <SidebarCalendar />
 
       {/* Основное содержимое */}
       <main className="flex-1 overflow-auto p-6">
@@ -104,7 +89,10 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
                             <span className="p-[3px] bg-maincolor rounded-lg">
                               {week.cabinet}
                             </span>
-                            <span>08:30 - 9:30</span>
+                            <span>
+                              {pairTimes[week.position - 1].start} -
+                              {pairTimes[week.position - 1].end}
+                            </span>
                           </div>
                         </div>
                         <div>
@@ -129,6 +117,7 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
           ))}
         </div>
       </main>
+      <Modal />
     </div>
   );
 };

@@ -1,15 +1,15 @@
-export type Pair = {
-  name: string;
-  time: string;
-  subject: string;
-  type: string;
-  group: string;
-  room: string;
-  teacher: string;
-  note: string;
-};
+// export type Pair = {
+//   name: string;
+//   time: string;
+//   subject: string;
+//   type: string;
+//   group: string;
+//   room: string;
+//   teacher: string;
+//   note: string;
+// };
 
-export type GroupedPairs = Pair[][];
+// export type GroupedPairs = Pair[][];
 interface Group {
   id: number;
   name: string;
@@ -35,6 +35,8 @@ export interface Lesson {
   groupId: number;
   teacherId: number | null;
   group: Group;
+  notes?: Note[] | null;
 }
 
 export type Schedule = Lesson[];
+export type Calendar = Lesson[];

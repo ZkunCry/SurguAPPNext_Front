@@ -36,7 +36,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
           );
         })}
 
-        <Link href={"/logout"} className="inline-flex border-none">
+        <Link href={"/api/logout"} className="inline-flex border-none">
           <Image src={Logout} alt="Выйти" />
           <span> Выйти</span>
         </Link>

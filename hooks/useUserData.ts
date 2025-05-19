@@ -19,19 +19,21 @@ export const useUserData = () => {
   const userQuery = useGetUserMe({
     enabled: !!userId,
     refetchOnWindowFocus: false,
-    onSuccess: (data) => setUser(data),
     onError: (error) => {
       toast.error(`${error.message} | ${error.status}`);
     },
   });
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       setUserId(getUser());
       setIsInitializing(false);
     }
   }, []);
-
+  useEffect(() => {
+    if (userQuery.data) {
+      setUser(userQuery.data);
+    }
+  }, [userQuery.data]);
   return {
     ...userQuery,
     showSkeleton: isInitializing || (userId !== null && userQuery.isLoading),

@@ -17,14 +17,19 @@ axiosInstance.interceptors.request.use(async (config) => {
     const { cookies } = await import("next/headers");
     const accessToken = (await cookies()).get("accessToken")?.value;
     const refreshToken = (await cookies()).get("refreshToken")?.value;
+
     if (accessToken) {
       config.headers.set(
-        "cookie",
-        `Authorization: 623|fE83dOZCesmoLe77rGBDOrM2ft8QA1Y2Mhsdfr8adeb5ddc6`,
-        `accessToken=${accessToken};refreshToken=${refreshToken}`
+        "Cookie",
+        `accessToken=${accessToken}; refreshToken=${refreshToken}`
       );
     }
+    config.headers.set(
+      "Authorization",
+      `623|fE83dOZCesmoLe77rGBDOrM2ft8QA1Y2Mhsdfr8adeb5ddc6`
+    );
   }
+
   return config;
 });
 let subscribers = [];
@@ -77,9 +82,8 @@ axiosInstance.interceptors.response.use(
         const error = new Error("Требуется повторная авторизация");
         error.status = 401;
         error.data = { message: "Требуется повторная авторизация" };
-        const { data } = await axios.get(`api/logout`, {
-          withCredentials: true,
-        });
+        const { data } = await fetch(`http://localhost:3001/logout`);
+        console.trace(data);
         return Promise.reject(error);
       }
 

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-const protectedRoutes = ["/curriculum"];
+const protectedRoutes = ["/curriculum", "/calendar"];
 const publicRoutes = ["/news", "/schedule", "/teachers"];
 export default async function middleware(req: NextRequest) {
   const { cookies } = await import("next/headers");

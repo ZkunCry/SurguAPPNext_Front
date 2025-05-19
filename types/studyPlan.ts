@@ -1,6 +1,7 @@
 interface ClassStudyPlanInfoName {
   id: number;
   name: string;
+  course: number;
 }
 
 export interface ClassStudyPlanInfoItem {

@@ -17,9 +17,9 @@ const ScheduleCards = () => {
     enabled: group !== null,
     refetchOnWindowFocus: false,
   });
-  const currentDay = schedule
-    ?.filter((pair) => pair.day === scheduleDay?.day.toUpperCase())
-    .sort((a, b) => a.position - b.position);
+  const currentDay = schedule?.filter(
+    (pair) => pair.day === scheduleDay?.day.toUpperCase()
+  );
   return isFetching ? (
     <div className="flex flex-col gap-[10px]">
       <div className="flex flex-col h-[250px]  p-[10px] bg-maincolor rounded-[10px] gap-[10px]">

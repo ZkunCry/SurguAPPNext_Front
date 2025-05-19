@@ -1,18 +1,20 @@
 "use client";
-import type { StudyPlanResponse } from "@/types/studyPlan";
+import type { ClassStudyPlanInfoItem } from "@/types/studyPlan";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 interface DirectionsProps {
-  directions: StudyPlanResponse;
+  directions: ClassStudyPlanInfoItem[];
 }
 
 const Directions = ({ directions }: DirectionsProps) => {
-  const course = useSearchParams().get("course");
-  const firstSemester = directions.filter(
-    (c) => c.semester === "1" && c.name.course === +course
+  const course = useSearchParams().get("course") || "1";
+
+  const firstSemester: ClassStudyPlanInfoItem[] = directions.filter(
+    (c) => c.semester.toString() === "1" && c.name.course === +course
   );
-  const secondSemester = directions.filter(
-    (c) => c.semester === "2" && c.name.course === +course
+  console.log(firstSemester);
+  const secondSemester: ClassStudyPlanInfoItem[] = directions.filter(
+    (c) => c.semester.toString() === "2" && c.name.course === +course
   );
   return course ? (
     <div className="flex flex-col">
