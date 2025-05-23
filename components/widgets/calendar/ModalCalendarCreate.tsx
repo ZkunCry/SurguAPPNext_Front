@@ -3,6 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Label from "@/components/ui/label";
 import Input from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import SelectMenu from "../select/Select";
 const ModalCalendarCreate = (props = {}) => {
   return (
     <>
@@ -16,6 +17,12 @@ const ModalCalendarCreate = (props = {}) => {
           id="email"
           placeholder="Изучить как работает компонент"
         />
+      </div>
+      <div className="flex flex-col gap-3">
+        <Label className="text-text text-sm" htmlFor="email">
+          День
+        </Label>
+        
       </div>
       <div
         style={{

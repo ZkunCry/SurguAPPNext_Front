@@ -10,7 +10,7 @@
 // };
 
 // export type GroupedPairs = Pair[][];
-interface Group {
+export interface Group {
   id: number;
   name: string;
   code: string;
@@ -40,3 +40,6 @@ export interface Lesson {
 
 export type Schedule = Lesson[];
 export type Calendar = Lesson[];
+export type ScheduleByDay = {
+  [key: string]: Lesson[];
+};

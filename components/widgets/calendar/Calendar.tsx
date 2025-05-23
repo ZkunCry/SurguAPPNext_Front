@@ -1,38 +1,24 @@
 "use client";
-import Sidebar from "@/components/ui/sidebar";
-import type { Lesson, Schedule } from "@/types/schedule";
-import { fillCurrentMonth, type Calendar } from "@/utils/fillCurrentMonth";
-import { pairTimes } from "@/utils/schedule";
 import React from "react";
-import ModalCalendarCreate from "./ModalCalendarCreate";
+import type { ScheduleByDay } from "@/types/schedule";
+import { daysOfWeek, type Calendar } from "@/utils/fillCurrentMonth";
+import { pairTimes } from "@/utils/schedule";
 import Modal from "../modal/Modal";
 import SidebarCalendar from "./SidebarCalendar";
-type ScheduleByDay = {
-  [key: string]: Lesson[];
-};
-const getCorrectCurrentMonth = (): Calendar => {
-  const currentMonth = fillCurrentMonth();
-  const days = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
-  const index = days.findIndex((day, index) => {
-    return day === currentMonth[0].day.toUpperCase();
+import { useQuery } from "@tanstack/react-query";
+import { CalendarService } from "@/services/calendar/calendar";
+import useScheduleStore from "@/store/useSchedule";
+import SelectMenuWrap from "../schedule/ScheduleWrap";
+const Calendar = ({ groups }) => {
+  const { data: schedule } = useQuery({
+    queryKey: ["calendar", "609-11"],
+    queryFn: () => CalendarService.getCalendar("609-11"),
+    refetchOnWindowFocus: false,
   });
-  return [
-    ...Array(index).fill({
-      day: "",
-    }),
-    ...currentMonth,
-  ];
-};
-const Calendar = ({ schedule }: { schedule: Schedule }) => {
-  const scheduleByDay: ScheduleByDay = schedule.reduce((acc, item) => {
-    const day = item.day;
-    if (!acc[day]) acc[day] = [];
-    acc[day].push(item);
-    return acc;
-  }, {});
-
-  const currentMonth = getCorrectCurrentMonth();
-
+  // const {group} = useScheduleStore((state) => state.group);
+  const scheduleByDay: ScheduleByDay = CalendarService.scheduleByday(schedule);
+  const currentMonth = CalendarService.getCorrectCurrentMonth();
+  console.log(currentMonth);
   return (
     <div className="w-full flex h-screen bg-white  relative">
       <SidebarCalendar />
@@ -54,11 +40,13 @@ const Calendar = ({ schedule }: { schedule: Schedule }) => {
           </div>
           <h2 className="text-xl font-semibold text-gray-800">Сентябрь 2023</h2>
         </div>
-
+        <div>
+          <SelectMenuWrap />
+        </div>
         {/* Сетка календаря */}
         <div className="grid grid-cols-7 bg-gray-200 gap-px">
           {/* Заголовки дней */}
-          {["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].map((day) => (
+          {daysOfWeek.map((day) => (
             <div
               key={day}
               className="bg-white p-3 text-center text-xs text-gray-500 relative top-0 z-10"

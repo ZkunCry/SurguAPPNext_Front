@@ -1,11 +1,20 @@
-import { QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
-export interface QueryProviderProps
-  extends React.ComponentProps<typeof QueryClientProvider> {
-  children: React.ReactNode;
-}
+export const QueryProvider = ({ children }: { children: React.ReactNode }) => {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 60 * 10000, // 1 минута
+            refetchOnWindowFocus: false,
+          },
+        },
+      })
+  );
 
-export const QueryProvider: React.FC<QueryProviderProps> = ({
-  children,
-  client,
-}) => <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};

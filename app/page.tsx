@@ -104,7 +104,7 @@ export default async function Home() {
                   </Button>
                 </Link>
               </div>
-              <Link href={"/news"}>Продолжить без входа</Link>
+              <Link href={"/home"}>Продолжить без входа</Link>
             </div>
           </div>
         </div>

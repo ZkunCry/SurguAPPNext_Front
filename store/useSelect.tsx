@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 interface ISelectState {
-  select: string;
+  selectDay: string;
   setSelect: (select: string) => void;
 }
 
-export const useSelect = create<ISelectState>((set) => ({
-  select: "",
+export const useSelectDate = create<ISelectState>((set) => ({
+  selectDay: "",
   setSelect: (select) => set({ select }),
 }));

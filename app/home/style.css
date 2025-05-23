@@ -1,0 +1,18 @@
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: radial-gradient(
+    110.5% 150.26% at 100% -5.51%,
+    #3b456c 0%,
+    #1e74d9 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp 0.8s forwards;
+  animation-delay: 0.3s;
+}
