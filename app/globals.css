@@ -19,21 +19,29 @@
   --color-home-gradient: var(--home-gradient);
   --color-main-text: var(--main-text);
   --color-group: var(--group);
+
+  @keyframes moveInOut {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-15px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 }
 
 @utility container {
   margin-inline: auto;
   padding-inline: 0.62rem;
-}
-
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
 }
 
 @layer base {
@@ -94,24 +102,6 @@
     --accent: #f4f5ff;
     --text: #3c3d41;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --gradient: radial-gradient(
-        110.5% 150.26% at 100% -5.51%,
-        #3b456c 0%,
-        #1e74d9 100%
-      );
-      --border: #515666;
-      --main-text: #3c3d41;
-      --background: #181920;
-      --foreground: #ededed;
-      --form: #1c1d28;
-      --main-color: #272835;
-      --acent: #363948;
-      --main-text: #3c3d41;
-      --text: #f0f2f6;
-    }
-  }
   *::-webkit-scrollbar {
     width: 5px;
     background-color: transparent;
@@ -125,17 +115,39 @@
     border-radius: 10px;
   }
 }
-/* * {
-  transition: background-color var(--transition-duration),
-    color var(--transition-duration);
-} */
+:is(
+    div,
+    section,
+    article,
+    header,
+    footer,
+    main,
+    aside,
+    nav,
+    button,
+    input,
+    textarea,
+    select,
+    label,
+    a,
+    li,
+    ul,
+    ol,
+    table,
+    td,
+    th
+  ) {
+  transition: background var(--transition-duration),
+    border-color var(--transition-duration);
+}
+
+:is(p, span, a, h1, h2, h3, h4, h5, h6, li, label, button, strong, em, th, td) {
+  transition: color var(--transition-duration);
+}
 body {
   color: var(--foreground);
   font-family: "Montserrat", "Montserrat Fallback";
   font-size: 16px;
-
-  transition: background-color var(--transition-duration),
-    color var(--transition-duration);
 }
 .custom-toggle.react-toggle--checked .react-toggle-track {
   background-color: var(--primary);
@@ -143,23 +155,6 @@ body {
 .react-toggle:hover .react-toggle-track {
   background-color: var(--primary) !important;
   opacity: 0.8;
-}
-@keyframes moveInOut {
-  0% {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-15px);
-  }
-  50% {
-    transform: translateY(0);
-  }
-  75% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
 .robot {

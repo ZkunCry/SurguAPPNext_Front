@@ -37,7 +37,7 @@ export default function ErrorBoundary({
         <Image
           src={ErrorImage}
           alt="Ошибка"
-          className="w-36 h-36 mx-auto mb-8 animate-shake"
+          className="w-[450px] h-[450] mx-auto mb-2 animate-shake"
         />
 
         <h1 className="text-2xl font-bold dark:text-white! text-gray-800   mb-4">
