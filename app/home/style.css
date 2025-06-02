@@ -16,3 +16,11 @@
   animation: fadeInUp 0.8s forwards;
   animation-delay: 0.3s;
 }
+
+.header{
+  text-align:center;
+  margin-bottom: 40px;
+}
+.header-title{
+  font-size:1.125rem; /*соответствует классу text-lg*/
+}

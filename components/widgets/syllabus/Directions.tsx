@@ -17,7 +17,7 @@ const Directions = ({ directions }: DirectionsProps) => {
     (c) => c.semester.toString() === "2" && c.name.course === +course
   );
   return course ? (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-[30px]">
       <div className="flex flex-col gap-[15px]">
         <h2 className="font-semibold text-[22px]"> 1 семестр </h2>
         <ul className="grid md:grid-cols-1 lg:grid-cols-2 gap-[15px]  ">

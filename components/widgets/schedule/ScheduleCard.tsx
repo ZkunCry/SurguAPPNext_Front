@@ -16,7 +16,7 @@ const ScheduleCard: React.FC<IScheduleCard> = ({ pair, onClick, subGroup }) => {
   return (
     <div
       className={cn(
-        "flex flex-col card p-[10px]  rounded-[10px] gap-[10px] cursor-pointer",
+        "flex flex-col p-[10px]  rounded-[10px] gap-[10px] cursor-pointer",
         +subGroup !== pair.subGroup && +subGroup !== 0 ? "opacity-25" : ""
       )}
       onClick={() => onClick && onClick()}

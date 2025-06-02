@@ -1,6 +1,10 @@
 import { create } from "zustand";
 
-type ModalType = "CREATE_NOTE_SIDEBAR" | "CREATE_NOTE" | null;
+type ModalType =
+  | "CREATE_NOTE_SIDEBAR"
+  | "CREATE_NOTE"
+  | "FILTER_SCHEDULE"
+  | null;
 interface IModalState {
   isOpen: boolean;
   type: ModalType;

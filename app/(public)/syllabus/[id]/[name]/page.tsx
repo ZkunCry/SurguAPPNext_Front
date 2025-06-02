@@ -22,9 +22,7 @@ export default async function DirectionPage({
 
       <SearchComponent />
       <section className="flex flex-col bg-maincolor rounded-[10px] p-[10px] ">
-        <div className="flex flex-col gap-[15px]">
-          <Directions directions={data.classStudyPlanInfo} />
-        </div>
+        <Directions directions={data.classStudyPlanInfo} />
       </section>
     </main>
   );

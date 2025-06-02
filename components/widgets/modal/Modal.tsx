@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "./Modal.css";
@@ -5,7 +6,7 @@ import { X } from "lucide-react";
 import useModal from "@/store/useModal";
 import ModalCalendarCreate from "../calendar/ModalCalendarCreate";
 import ModalCalendarView from "../calendar/ModalCalendarView";
-
+import Filter from "../schedule/Filter";
 const Modal = () => {
   const { isOpen, type, props, closeModal } = useModal((state) => state);
 
@@ -17,6 +18,10 @@ const Modal = () => {
       break;
     case "CREATE_NOTE_SIDEBAR":
       content = <ModalCalendarView {...props} />;
+      break;
+    case "FILTER_SCHEDULE":
+      content = <Filter {...props} />;
+      break;
     default:
       return null;
   }

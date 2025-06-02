@@ -21,7 +21,7 @@ const SelectMenuWrap = ({ items }) => {
       localStorage.setItem("group", selectedGroup);
     }
   }, [selectedGroup]);
-  return selectedGroup === undefined ? (
+  return selectedGroup === undefined || items === undefined ? (
     <ScheduleWrapSkeleton />
   ) : (
     <SelectMenu

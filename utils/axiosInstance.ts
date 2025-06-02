@@ -82,7 +82,7 @@ axiosInstance.interceptors.response.use(
         const error = new Error("Требуется повторная авторизация");
         error.status = 401;
         error.data = { message: "Требуется повторная авторизация" };
-        const { data } = await fetch(`http://localhost:3001/logout`);
+        const { data } = await fetch(`/api/logout`);
         console.trace(data);
         return Promise.reject(error);
       }

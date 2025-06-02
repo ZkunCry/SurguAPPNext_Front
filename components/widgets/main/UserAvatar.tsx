@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 
 const UserAvatar = () => {
   const { data, showSkeleton, userId, error } = useUserData();
-
+  console.log(!userId && error);
   return (
-    <div
-      className="flex items-center gap-3 cursor-pointer"
-      onClick={() => redirect("/settings")}
+    <Link
+      className="flex items-center gap-3 cursor-pointer z-[2] relative"
+      href={userId && !error ? "/settings" : "/signin"}
     >
       <div
         className={`w-[38px] h-[38px] rounded-full ${
@@ -23,10 +23,10 @@ const UserAvatar = () => {
         ) : userId && !error ? (
           `${data?.name} ${data?.surname} ${data?.middleName}`
         ) : (
-          <Link href="/signin">Войти в систему</Link>
+          <span>Войти в систему</span>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

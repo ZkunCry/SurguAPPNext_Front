@@ -9,7 +9,6 @@ export default async function SchedulePage() {
   const groups = await data.json().then((res: Group[]) => {
     return ScheduleService.transformGroup(res);
   });
-  console.log(groups);
   return (
     <>
       <ScheduleMain groups={groups} />

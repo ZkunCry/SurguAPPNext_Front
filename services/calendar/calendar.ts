@@ -1,6 +1,7 @@
 import axiosInstance from "@/utils/axiosInstance";
 import { fillCurrentMonth } from "@/utils/fillCurrentMonth";
 import type { Calendar } from "@/types/schedule";
+import type { Calendar as CalendarMonth } from "@/utils/fillCurrentMonth";
 import { daysOfWeek } from "@/utils/fillCurrentMonth";
 export const CalendarService = {
   async getCalendar(group: string) {
@@ -18,16 +19,16 @@ export const CalendarService = {
       return acc;
     }, {});
   },
-   getCorrectCurrentMonth (): Calendar {
+  getCorrectCurrentMonth(): CalendarMonth {
     const currentMonth = fillCurrentMonth();
     const index = daysOfWeek.findIndex((day) => {
       return day.toUpperCase() === currentMonth[0].day.toUpperCase();
     });
     return [
-      ...Array(index).fill({
+      ...Array(index - 1).fill({
         day: "",
       }),
       ...currentMonth,
     ];
-  };
+  },
 };

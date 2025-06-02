@@ -19,24 +19,6 @@
   --color-home-gradient: var(--home-gradient);
   --color-main-text: var(--main-text);
   --color-group: var(--group);
-
-  @keyframes moveInOut {
-    0% {
-      transform: translateY(0);
-    }
-    25% {
-      transform: translateY(-15px);
-    }
-    50% {
-      transform: translateY(0);
-    }
-    75% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 }
 
 @utility container {
@@ -175,4 +157,42 @@ body {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeIn 0.4s ease-out forwards;
+}
+@keyframes moveInOut {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

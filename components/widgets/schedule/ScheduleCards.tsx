@@ -5,8 +5,17 @@ import useScheduleStore from "@/store/useSchedule";
 import { useGetScheduleByGroup } from "@/query-hooks/schedule";
 import { motion } from "framer-motion";
 import { useShallow } from "zustand/shallow";
+import { useFilter } from "@/store/useFilter";
+import { pairTimesSelect } from "@/utils/schedule";
 const ScheduleCards = () => {
   const scheduleDay = useScheduleStore((state) => state.scheduleDay || null);
+  const { isFiltered, pair, time } = useFilter(
+    useShallow((state) => ({
+      isFiltered: state.isFiltered,
+      pair: state.filters.pair,
+      time: state.filters.time,
+    }))
+  );
   const { group, subGroup } = useScheduleStore(
     useShallow((state) => ({
       group: state.group,
@@ -20,6 +29,15 @@ const ScheduleCards = () => {
   const currentDay = schedule?.filter(
     (pair) => pair.day === scheduleDay?.day.toUpperCase()
   );
+  let filteredPairs = currentDay || [];
+  if (isFiltered) {
+    if (pair) filteredPairs = filteredPairs.filter((p) => p.type === pair);
+
+    if (time)
+      filteredPairs = filteredPairs.filter(
+        (p) => pairTimesSelect[p.position - 1].value === time
+      );
+  }
   return isFetching ? (
     <div className="flex flex-col gap-[10px]">
       <div className="flex flex-col h-[250px]  p-[10px] bg-maincolor rounded-[10px] gap-[10px]">
@@ -38,7 +56,7 @@ const ScheduleCards = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col gap-[10px] fade-in "
     >
-      {currentDay?.map((pair) => (
+      {filteredPairs?.map((pair) => (
         <div
           key={pair.id}
           className="flex flex-col p-[10px] bg-maincolor rounded-[10px] gap-[10px] fade-in"

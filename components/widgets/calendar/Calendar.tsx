@@ -9,18 +9,21 @@ import { useQuery } from "@tanstack/react-query";
 import { CalendarService } from "@/services/calendar/calendar";
 import useScheduleStore from "@/store/useSchedule";
 import SelectMenuWrap from "../schedule/ScheduleWrap";
-const Calendar = ({ groups }) => {
+const Calendar = () => {
+  const group = useScheduleStore((state) => state.group);
   const { data: schedule } = useQuery({
-    queryKey: ["calendar", "609-11"],
-    queryFn: () => CalendarService.getCalendar("609-11"),
+    queryKey: ["calendar", group],
+    queryFn: () => CalendarService.getCalendar(group),
     refetchOnWindowFocus: false,
+    enabled: group !== null,
   });
-  // const {group} = useScheduleStore((state) => state.group);
+  if (group === null || schedule === undefined) return <SidebarCalendar />;
+  console.log(schedule, group);
   const scheduleByDay: ScheduleByDay = CalendarService.scheduleByday(schedule);
   const currentMonth = CalendarService.getCorrectCurrentMonth();
   console.log(currentMonth);
   return (
-    <div className="w-full flex h-screen bg-white  relative">
+    <div className="w-full flex  bg-maincolor  relative">
       <SidebarCalendar />
 
       {/* Основное содержимое */}
@@ -28,81 +31,93 @@ const Calendar = ({ groups }) => {
         {/* Заголовок календаря */}
         <div className="flex items-center mb-6 gap-4">
           <div className="hidden md:flex gap-1">
-            <button className="px-3 py-1 border rounded-sm hover:bg-gray-100">
+            <button className="px-3 py-1 border border-border rounded-sm ">
               ‹
             </button>
-            <button className="px-3 py-1 border rounded-sm hover:bg-gray-100">
+            <button className="px-3 py-1 border border-border rounded-sm ">
               Сегодня
             </button>
-            <button className="px-3 py-1 border rounded-sm hover:bg-gray-100">
+            <button className="px-3 py-1 border border-border rounded-sm ">
               ›
             </button>
           </div>
-          <h2 className="text-xl font-semibold text-gray-800">Сентябрь 2023</h2>
+          <h2 className="text-xl font-semibold text-text">Сентябрь 2023</h2>
         </div>
-        <div>
-          <SelectMenuWrap />
-        </div>
+
         {/* Сетка календаря */}
-        <div className="grid grid-cols-7 bg-gray-200 gap-px">
+        <div className="grid grid-cols-6 gap-px">
           {/* Заголовки дней */}
-          {daysOfWeek.map((day) => (
-            <div
-              key={day}
-              className="bg-white p-3 text-center text-xs text-gray-500 relative top-0 z-10"
-            >
-              {day}
-            </div>
-          ))}
+          {daysOfWeek.map(
+            (day) =>
+              day !== "Вс" && (
+                <div
+                  key={day}
+                  className="bg-maincolor border dark:border-gray-700 border-gray-200 rounded-lg p-3 text-center text-xs text-gray-500 relative "
+                >
+                  {day}
+                </div>
+              )
+          )}
 
           {/* Колонки дней */}
-          {currentMonth.map((day, i) => (
-            <div
-              key={i}
-              className={`flex flex-col gap-[10px] bg-white min-h-[400px] md:min-h-[700px] relative border-r border-gray-200 p-2 ${
-                !day.day ? "bg-gray-100!" : ""
-              } `}
-            >
-              {day.day && <div className="font-medium mb-2">{day.number}</div>}
+          {currentMonth.map(
+            (day, i) =>
+              day.day !== "Вс" && (
+                <div
+                  key={i}
+                  className={`flex flex-col gap-[10px] bg-maincolor min-h-[400px] md:min-h-[700px] relative border-r dark:border-gray-700 border-gray-200 p-2  `}
+                >
+                  {day.day && (
+                    <div className="font-medium mb-2">{day.number}</div>
+                  )}
 
-              {scheduleByDay[day.day.toUpperCase()] !== undefined
-                ? scheduleByDay[day.day.toUpperCase()]?.map((week, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="flex flex-col  gap-[10px] left-1 right-1 bg-blue-50 border-l-4 border-l-primary rounded-sm p-2  text-sm  min-h-[120px]"
-                      >
-                        <div className="flex font-medium">
-                          <div className="w-full flex justify-between  items-center text-[10px] font-semibold">
-                            <span className="p-[3px] bg-maincolor rounded-lg">
-                              {week.cabinet}
-                            </span>
-                            <span>
-                              {pairTimes[week.position - 1].start} -
-                              {pairTimes[week.position - 1].end}
-                            </span>
-                          </div>
-                        </div>
-                        <div>
-                          <h5 className="font-semibold">{week.name}</h5>
-                        </div>
-                        <div className="flex flex-col gap-[4px] text-[10px] font-medium leading-[14px] ">
-                          <span>
-                            {week.type}
-                            {week.subGroup
-                              ? ` | п/г ${week.subGroup}`
-                              : ""}{" "}
-                          </span>
-                          <span>
-                            {week.teacherId ?? "Информация отсутствует"}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })
-                : ""}
-            </div>
-          ))}
+                  {scheduleByDay[day.day.toUpperCase()] !== undefined
+                    ? scheduleByDay[day.day.toUpperCase()]?.map(
+                        (week, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className={`flex flex-col gap-[10px] left-1 right-1 bg-primary border-l-4 ${
+                                week.subGroup === 1
+                                  ? "border-l-primary"
+                                  : week.subGroup === 2
+                                  ? "border-l-[#0D9739]"
+                                  : "border-l-amber-500"
+                              }  rounded-sm p-2  text-sm  min-h-[120px]`}
+                            >
+                              <div className="flex font-medium">
+                                <div className="w-full flex justify-between  items-center text-[10px] font-semibold">
+                                  <span className="p-[3px] bg-maincolor rounded-lg">
+                                    {week.cabinet}
+                                  </span>
+                                  <span>
+                                    {pairTimes[week.position - 1].start} -
+                                    {pairTimes[week.position - 1].end}
+                                  </span>
+                                </div>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold">{week.name}</h5>
+                              </div>
+                              <div className="flex flex-col gap-[4px] text-[10px]  font-medium leading-[14px] ">
+                                <span className="text-text">
+                                  {week.type}
+                                  {week.subGroup
+                                    ? ` | п/г ${week.subGroup}`
+                                    : ""}{" "}
+                                </span>
+                                <span>
+                                  {week.teacherId ?? "Информация отсутствует"}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        }
+                      )
+                    : ""}
+                </div>
+              )
+          )}
         </div>
       </main>
       <Modal />

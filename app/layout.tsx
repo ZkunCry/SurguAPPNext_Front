@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import Providers from "./providers/Providers";
 import { Toaster } from "react-hot-toast";
 import { Montserrat } from "next/font/google";
+import Modal from "@/components/widgets/modal/Modal";
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -35,6 +36,7 @@ export default function RootLayout({
                 className: "!bg-maincolor dark:!text-white !text-dark  ",
               }}
             />
+            <Modal />
           </ThemeProvider>
         </Providers>
       </body>
