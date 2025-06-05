@@ -4,10 +4,10 @@ import Image from "next/image";
 import Teach from "../../../assets/teach.svg";
 import Map from "../../../assets/map.svg";
 import Zametka from "../../../assets/zametka.svg";
-import type { Lesson } from "@/types/schedule";
+import type { ILesson } from "@/types/schedule";
 import { cn } from "@/utils/utils";
 interface IScheduleCard {
-  pair: Lesson;
+  pair: ILesson;
   subGroup: string;
   onClick?: () => void;
 }
@@ -46,7 +46,11 @@ const ScheduleCard: React.FC<IScheduleCard> = ({ pair, onClick, subGroup }) => {
           </div>
           <div className="inline-flex items-center gap-[10px]">
             <Image src={Teach} alt="teacher" />
-            <span>{pair.teacherId ? pair.teacherId : "Нет преподавателя"}</span>
+            <span>
+              {pair.teacher
+                ? `${pair.teacher.surname} ${pair.teacher.name} ${pair.teacher.middleName}`
+                : "Нет преподавателя"}
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-[10px] text-ellipsis overflow-hidden pt-[15px]">

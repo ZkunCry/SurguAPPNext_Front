@@ -3,7 +3,6 @@ import MenuLinks from "@/components/widgets/menuLinks/MenuLinks";
 import SearchComponent from "@/components/widgets/search/SearchComponent";
 import Directions from "@/components/widgets/syllabus/Directions";
 import axiosInstance from "@/utils/axiosInstance";
-
 export default async function DirectionPage({
   params,
 }: {
@@ -13,6 +12,7 @@ export default async function DirectionPage({
   const { data } = await axiosInstance.get(
     `/schedule/plan/details?code=${result.id}`
   );
+
   return (
     <main className="flex flex-col gap-[15px]">
       <Title page={decodeURIComponent(result.name)} hasBack />

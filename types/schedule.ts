@@ -1,16 +1,4 @@
-// export type Pair = {
-//   name: string;
-//   time: string;
-//   subject: string;
-//   type: string;
-//   group: string;
-//   room: string;
-//   teacher: string;
-//   note: string;
-// };
-
-// export type GroupedPairs = Pair[][];
-export interface Group {
+export interface IGroup {
   id: number;
   name: string;
   code: string;
@@ -19,7 +7,7 @@ export interface Group {
   profile: string | null;
 }
 
-export interface Lesson {
+export interface ILesson {
   id: number;
   startDate: string;
   endDate: string;
@@ -33,13 +21,18 @@ export interface Lesson {
   week: number | null;
   subGroup: number;
   groupId: number;
-  teacherId: number | null;
-  group: Group;
+  teacher: ITeacher;
+  group: IGroup;
   notes?: Note[] | null;
 }
-
-export type Schedule = Lesson[];
-export type Calendar = Lesson[];
+export interface ITeacher {
+  id: number;
+  name: string;
+  surname: string;
+  middleName: string;
+}
+export type Schedule = ILesson[];
+export type Calendar = ILesson[];
 export type ScheduleByDay = {
-  [key: string]: Lesson[];
+  [key: string]: ILesson[];
 };

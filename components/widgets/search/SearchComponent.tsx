@@ -1,11 +1,11 @@
 "use client";
 import useSearch from "@/store/useSearch";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
 import Input from "@/components/ui/input";
 import { useShallow } from "zustand/shallow";
 const SearchComponent = ({ cb }) => {
-  const [searchStr, setSearchStr] = React.useState("");
+  const [searchStr, setSearchStr] = useState("");
   const { setSearchString, searchString } = useSearch(
     useShallow((state) => ({
       setSearchString: state.setSearchString,

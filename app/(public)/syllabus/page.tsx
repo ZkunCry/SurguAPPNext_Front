@@ -1,14 +1,8 @@
 import Title from "@/components/widgets/main/Title";
 import axiosInstance from "@/utils/axiosInstance";
 import Link from "next/link";
-
-type EducationData = {
-  alumniName: string;
-  code: string;
-  specialityName: string;
-  year: number;
-};
-
+import { EducationData } from "@/types/studyPlan";
+import { ScheduleService } from "@/services/schedule/schedule";
 // Функция для группировки по типу обучения
 const groupByEducationType = (directions: EducationData[]) => {
   return directions.reduce((acc, direction) => {
@@ -17,12 +11,9 @@ const groupByEducationType = (directions: EducationData[]) => {
       Бакалавр: "Бакалавриат",
       Магистр: "Магистратура",
     };
-
     const key = typeMap[direction.alumniName] || direction.alumniName;
+    if (!acc[key]) acc[key] = [];
 
-    if (!acc[key]) {
-      acc[key] = [];
-    }
     acc[key].push(direction);
     return acc;
   }, {} as Record<string, EducationData[]>);
@@ -33,8 +24,8 @@ export default async function SyllabusPage() {
     "/schedule/plan/list"
   );
 
+  console.log(directions);
   const groupedDirections = groupByEducationType(directions);
-
   return (
     <main className="flex flex-col w-full gap-[15px] overflow-hidden px-[5px] fade-in">
       <Title page="Учебные планы" />
@@ -59,7 +50,9 @@ export default async function SyllabusPage() {
                     <div className="flex justify-between items-center pb-[15px] border-b border-[#ACA5A5]">
                       <h3 className="font-bold">{pair.code}</h3>
                       <div className="text-center py-[5px] px-[15px] border rounded-[20px] border-[#292A2D]">
-                        <span className="italic">4 года</span>
+                        <span className="italic">
+                          {ScheduleService.pluralizeYears(pair.course)}
+                        </span>
                       </div>
                     </div>
                     <h3 className="font-semibold">{pair.specialityName}</h3>

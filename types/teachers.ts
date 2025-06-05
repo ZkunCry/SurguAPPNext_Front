@@ -49,9 +49,6 @@ type DataObject = {
   last_activity_at: string;
 };
 
-// Повторно используем ранее созданные типы с дополнениями
-
-// Новые типы для дополнительных полей
 type DepartmentShort = {
   id: number;
   name: string;
@@ -63,7 +60,7 @@ type DegreeDocument = {
   doc_number: string;
   degree_id: string;
   degree_name: string;
-  awarded_at: string; // ISO date-time
+  awarded_at: string;
 };
 
 type AcademicTitleAward = {
@@ -84,14 +81,13 @@ type EducationalDocument = {
   organization: Organization;
   education_type: EducationType;
   document_type: DocumentType;
-  start_year: string; // ISO date-time
-  end_year: string; // ISO date-time
-  dt: string; // ISO date-time
-  created_at: string; // ISO date-time
-  updated_at: string; // ISO date-time
+  start_year: string;
+  end_year: string;
+  dt: string;
+  created_at: string;
+  updated_at: string;
 };
 
-// Вспомогательные типы для EducationalDocument
 type Organization = {
   id: string;
   name: string;
@@ -107,7 +103,6 @@ type DocumentType = {
   name: string;
 };
 
-// Повторно используемые типы из предыдущей реализации
 type Degree = {
   id: number;
   name: string;

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import SearchComponent from "../search/SearchComponent";
-import useSearch from "@/store/useSearch";
 import Teachers from "./Teachers";
 
 const TeachersSearch = () => {

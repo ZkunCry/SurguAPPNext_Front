@@ -24,12 +24,7 @@ const SidebarCalendar = () => {
     <>
       <Sidebar className="hidden md:block w-64 border-r border-border p-4 bg-maincolor">
         <div className="text-xl text-center font-medium mb-4">Календарь</div>
-        <button
-          className="w-full bg-primary text-white py-2 px-4 rounded-full mb-6 "
-          // onClick={() => openModal("CREATE_NOTE")}
-        >
-          Создать заметку
-        </button>
+
         <div className="flex flex-col gap-3">
           <span>Группа</span>
           <SelectMenuWrap items={groups} />

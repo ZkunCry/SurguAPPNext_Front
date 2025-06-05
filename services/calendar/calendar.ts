@@ -6,7 +6,7 @@ import { daysOfWeek } from "@/utils/fillCurrentMonth";
 export const CalendarService = {
   async getCalendar(group: string) {
     const { data } = await axiosInstance.get<Calendar>(
-      `/calendar?group=${group}`
+      `/schedule/student?group=${group}`
     );
     console.log(data);
     return data;
@@ -24,11 +24,18 @@ export const CalendarService = {
     const index = daysOfWeek.findIndex((day) => {
       return day.toUpperCase() === currentMonth[0].day.toUpperCase();
     });
+    console.log(index);
     return [
-      ...Array(index - 1).fill({
+      ...Array(index).fill({
         day: "",
       }),
       ...currentMonth,
     ];
+  },
+  getCurrentMonthYear(): string {
+    const now = new Date();
+    const month = now.toLocaleString("ru-RU", { month: "long" });
+    const year = now.getFullYear();
+    return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
   },
 };

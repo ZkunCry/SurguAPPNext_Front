@@ -1,4 +1,5 @@
 "use client";
+import useSearch from "@/store/useSearch";
 import type { ClassStudyPlanInfoItem } from "@/types/studyPlan";
 import { useSearchParams } from "next/navigation";
 import React from "react";
@@ -7,13 +8,17 @@ interface DirectionsProps {
 }
 
 const Directions = ({ directions }: DirectionsProps) => {
-  const course = useSearchParams().get("course") || "1";
+  const searchString = useSearch((state) => state.searchString);
+  const filteredDirections = directions.filter((c) =>
+    c.name.name.toLowerCase().includes(searchString.toLowerCase())
+  );
+  const course = useSearchParams().get("course") || "";
 
-  const firstSemester: ClassStudyPlanInfoItem[] = directions.filter(
+  const firstSemester: ClassStudyPlanInfoItem[] = filteredDirections.filter(
     (c) => c.semester.toString() === "1" && c.name.course === +course
   );
   console.log(firstSemester);
-  const secondSemester: ClassStudyPlanInfoItem[] = directions.filter(
+  const secondSemester: ClassStudyPlanInfoItem[] = filteredDirections.filter(
     (c) => c.semester.toString() === "2" && c.name.course === +course
   );
   return course ? (
